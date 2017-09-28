@@ -1,9 +1,10 @@
 #ifndef KARTA_H
 #define KARTA_H
 #include<QString>
-
-class Card
+#include<QWidget>
+class Card : public QWidget
 {
+Q_OBJECT
 public:
     int NrCard;
 

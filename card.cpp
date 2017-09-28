@@ -6,6 +6,7 @@ Card::Card()
 }
 Card::Card(int nr, int price, int owner, QString colour)
 {
+
 this->NrCard=nr;
     this->Price=price;
     this->Owner=owner;
