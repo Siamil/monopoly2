@@ -11,7 +11,7 @@ Player::Player(int num, int cash, int poz )
 this->NrPlayer=num;
 this->Cash=cash;
 this->Position=poz;
-    this->OwnedCards =new QVector<Card>();
+    //this->OwnedCards =new QVector<Card>();
 }
 int Player::getNrPlayer()
 {
@@ -35,7 +35,7 @@ this->Position=pozz;
 }
 void Player::buy(Card card)
 {
-OwnedCards->push_back(card);
+//OwnedCards->push_back(card);
 this->setCash(this->getCash()-card.Price);
 card.setOwner(NrPlayer);
 }
