@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
    /* QFrame *tablica;
     QFrame *jakas= tablica;
     tablica= new QFrame[5];
@@ -16,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
    *jakas[i].setStyleSheet("background-color: rgb(85, 170, 0)");
 jakas++;
 }*/
+
     ui->setupUi(this);
 
 }

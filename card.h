@@ -14,16 +14,16 @@ public:
 private:
 QString Colour;
 public:
-<<<<<<< HEAD
+
 
     Card();
 
     Card(int nr, int price, int owner, QString colour);
-=======
-    Card(QWidget* parent = 0);
+
+
     ~Card();
     //Card(int nr, int price, int owner, QString colour);
->>>>>>> d04be9c024a40fbcddf90432fd984ab10257bc12
+
 
     int getNrCard();
     void setPrice(int ck);
