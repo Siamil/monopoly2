@@ -11,7 +11,7 @@ private:
 public:
     int Cash;
     int Position;
-    QVector <Card> *OwnedCards;
+    //QVector <Card> *OwnedCards;
 
 
 

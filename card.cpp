@@ -1,18 +1,24 @@
 #include "card.h"
 #include<QString>
-Card::Card()
+Card::Card(QWidget* parent) :
+    QWidget(parent)
 {
 
 }
+<<<<<<< HEAD
 
 Card::Card(int nr, int price, int owner, QString colour)
 {
+=======
+//Card::Card(int nr, int price, int owner, QString colour)
+//{
+>>>>>>> d04be9c024a40fbcddf90432fd984ab10257bc12
 
-this->NrCard=nr;
-    this->Price=price;
-    this->Owner=owner;
-    this->Colour=colour;
-}
+//this->NrCard=nr;
+//    this->Price=price;
+//    this->Owner=owner;
+//    this->Colour=colour;
+//}
 int Card::getNrCard()
 {
 return this->NrCard;
@@ -32,4 +38,8 @@ void Card::setOwner(int nrG)
 int Card::getOwner()
 {
     return this->Owner;
+}
+
+Card::~Card() {
+
 }
