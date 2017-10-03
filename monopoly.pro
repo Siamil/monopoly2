@@ -39,3 +39,6 @@ FORMS += \
 
 DISTFILES += \
     Monopoly.jpg
+
+RESOURCES += \
+    resource.qrc
