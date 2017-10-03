@@ -2,9 +2,9 @@
 #define KARTA_H
 #include<QString>
 #include<QWidget>
-class Card : public QWidget
+class Card
 {
-Q_OBJECT
+
 public:
     int NrCard;
 
@@ -14,7 +14,9 @@ public:
 private:
 QString Colour;
 public:
+
     Card();
+
     Card(int nr, int price, int owner, QString colour);
 
     int getNrCard();

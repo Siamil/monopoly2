@@ -4,6 +4,7 @@ Card::Card()
 {
 
 }
+
 Card::Card(int nr, int price, int owner, QString colour)
 {
 
