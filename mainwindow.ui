@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>761</width>
-    <height>599</height>
+    <width>1000</width>
+    <height>723</height>
    </rect>
   </property>
   <property name="baseSize">
@@ -37,21 +37,51 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="lTura">
+        <property name="text">
+         <string>Tura:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lDice">
         <property name="text">
          <string>Wylosowales:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="lPosition">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Pole:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="bMove">
+        <property name="text">
+         <string>Ruch</string>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="bZakoncz">
+        <property name="text">
+         <string>zakoncz</string>
+        </property>
+        <property name="default">
+         <bool>true</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="bDice">
         <property name="text">
          <string>Rzuc Kostka</string>
         </property>
@@ -60,17 +90,13 @@
      </layout>
     </item>
    </layout>
-   <zorder>label</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>761</width>
+     <width>1000</width>
      <height>21</height>
     </rect>
    </property>

@@ -1,7 +1,7 @@
 #ifndef KARTA_H
 #define KARTA_H
 #include<QString>
-#include<QWidget>
+
 class Card
 {
 
@@ -30,12 +30,13 @@ public:
     int getPrice();
     void setOwner(int nrG);
     int getOwner();
+    void setNrCard(int nr);
 
 
 
 protected:
 
-   public slots:
+
 };
 
 #endif // KARTA_H

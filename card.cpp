@@ -1,10 +1,13 @@
 #include "card.h"
 #include<QString>
+#include <QVector>
 
+
+Card::Card (){
+
+}
 Card::Card(int nr, int price, int owner, QString colour)
 {
-
-
 this->NrCard=nr;
     this->Price=price;
     this->Owner=owner;
@@ -13,6 +16,10 @@ this->NrCard=nr;
 int Card::getNrCard()
 {
 return this->NrCard;
+}
+void Card::setNrCard(int nr)
+{
+    this->NrCard=nr;
 }
 void Card::setPrice(int ck)
 {
