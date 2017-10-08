@@ -24,8 +24,6 @@ public:
     void setCash(int il);
     void setPosition(int pozz);
     void setNrPlayer(int nr);
-    void buy(Card card);
-    void sell();
     void zastaw();
 
 };

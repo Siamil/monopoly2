@@ -11,8 +11,9 @@ public:
     int Price;
     int Owner;
 
-private:
-QString Colour;
+    bool Buyable;
+    QString Colour;
+    QString Type;
 public:
 
 
@@ -31,7 +32,12 @@ public:
     void setOwner(int nrG);
     int getOwner();
     void setNrCard(int nr);
-
+    void setBuyable(bool by);
+    bool getBuyable();
+    void setColour(QString col);
+    void setType(QString type);
+    QString getColour();
+    QString getType();
 
 
 protected:

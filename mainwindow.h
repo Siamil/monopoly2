@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <player.h>
+#include <QString>
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +33,8 @@ private slots:
     void on_bMove_clicked();
 
     void on_bZakoncz_clicked();
+
+    void on_bBuy_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -37,6 +37,30 @@ int Card::getOwner()
 {
     return this->Owner;
 }
+void Card::setBuyable(bool by)
+{
+    this->Buyable=by;
+}
+bool Card::getBuyable()
+{
+    return this->Buyable;
+}
+void Card::setColour(QString col)
+{
+    this->Colour=col;
+}
+void Card::setType(QString type)
+{
+    this->Type=type;
+}
+QString Card::getColour()
+{
+    return this->Colour;
+}
+QString Card::getType()
+{
+    return this->Type;
+}
 
 Card::~Card() {
 

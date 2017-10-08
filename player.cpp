@@ -37,16 +37,7 @@ void Player::setPosition(int pozz)
 {
 this->Position=pozz;
 }
-void Player::buy(Card card)
-{
-OwnedCards->push_back(card);
-this->setCash(this->getCash()-card.Price);
-card.setOwner(NrPlayer);
-}
-void Player::sell()
-{
 
-}
 void Player::zastaw()
 {
 
