@@ -61,7 +61,6 @@ QString Card::getType()
 {
     return this->Type;
 }
-
 Card::~Card() {
 
 }

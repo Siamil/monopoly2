@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <player.h>
 #include <QString>
+#include <game.h>
 
 namespace Ui {
 class MainWindow;
@@ -12,12 +13,11 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-Card **cards;
-Player *player;
-int iloscGraczy=2;
-int Tura=0;
 
-int dicenum;
+
+
+Game game;
+
 
 public:
     explicit MainWindow(QWidget *parent = 0);

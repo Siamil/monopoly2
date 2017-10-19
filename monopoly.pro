@@ -27,12 +27,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     player.cpp \
-    card.cpp
+    card.cpp \
+    cardui.cpp \
+    game.cpp \
+    board.cpp
 
 HEADERS += \
         mainwindow.h \
     card.h \
-    player.h
+    player.h \
+    cardui.h \
+    game.h \
+    board.h
 
 FORMS += \
         mainwindow.ui
