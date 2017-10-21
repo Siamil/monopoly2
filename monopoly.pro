@@ -30,7 +30,8 @@ SOURCES += \
     card.cpp \
     cardui.cpp \
     game.cpp \
-    board.cpp
+    board.cpp \
+    boardui.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     player.h \
     cardui.h \
     game.h \
-    board.h
+    board.h \
+    boardui.h
 
 FORMS += \
         mainwindow.ui

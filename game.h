@@ -15,6 +15,7 @@ public:
     void End();
     void Buy();
     void Dice();
+    ~Game();
 };
 
 #endif // GAME_H

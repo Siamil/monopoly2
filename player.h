@@ -24,8 +24,8 @@ public:
     void setCash(int il);
     void setPosition(int pozz);
     void setNrPlayer(int nr);
-    void zastaw();
 
+~Player();
 };
 
 #endif // GRACZ_H

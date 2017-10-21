@@ -1,8 +1,16 @@
 #include "cardui.h"
 
+cardUI::cardUI (QWidget *parent)
+        : QLabel(parent)
+{}
+
 cardUI::cardUI()
 {
 
+}
+void cardUI::setCard(Card *cardd)
+{
+    this->card=cardd;
 }
 void cardUI::setImage(QString file)
 {
@@ -21,5 +29,10 @@ void cardUI::setNrcard()
 void cardUI::RefreshUI()
 {
 this->setOwner();
+
+}
+cardUI::~cardUI()
+
+{
 
 }

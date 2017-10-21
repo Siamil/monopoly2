@@ -37,12 +37,12 @@ void Player::setPosition(int pozz)
 {
 this->Position=pozz;
 }
-
-void Player::zastaw()
-{
-
-}
 void Player::setNrPlayer(int nr)
 {
     this->NrPlayer=nr;
+}
+
+Player::~Player()
+{
+
 }

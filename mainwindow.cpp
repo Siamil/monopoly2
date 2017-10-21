@@ -3,6 +3,7 @@
 #include <QString>
 #include <player.h>
 #include "game.h"
+#include <QBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,7 +14,6 @@ MainWindow::MainWindow(QWidget *parent) :
    ui->bMove->setEnabled(false);
    ui->bZakoncz->setEnabled(false);
    ui->lTura->setText( "Tura gracza :"+QString::number(game.Tura+1));
-
    ui->lCash1->setText("Pieniadze gracza 1:" + QString::number(game.player[0].getCash()));
    ui->lCash2->setText("Pieniadze gracza 2:" + QString::number(game.player[1].getCash()));
 
@@ -50,6 +50,7 @@ void MainWindow::on_bMove_clicked()
     {
         ui->bBuy->setEnabled(true);
     }
+    else ui->bBuy->setEnabled(false);
 
 
     ui->lCash1->setText("Pieniadze gracza 1:" + QString::number(game.player[0].getCash()));

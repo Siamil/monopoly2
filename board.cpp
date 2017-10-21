@@ -6,10 +6,12 @@ Board::Board()
 
 
 
-    cards = new Card*[40];
-    for(int i=0;i<40;i++){
-        cards[i] = new Card;
-    }
+
+for (int i = 0; i< 40; i++)
+{
+ Card* card = new Card();
+cards.push_back(card);
+}
     cards[0]->setNrCard(0);
     cards[0]->setOwner(9);
     cards[0]->setPrice(0);
@@ -280,4 +282,12 @@ Board::Board()
 
 
 
+}
+Board::~Board()
+{
+
+for (int i = 0; i< 40; i++)
+{
+    delete cards[i];
+}
 }

@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/new">
-        <file>Monopoly.jpg</file>
+        <file>jpg.jpg</file>
     </qresource>
 </RCC>

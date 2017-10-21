@@ -17,7 +17,7 @@ void Game::Move()
 
 {
     player[Tura].setPosition(player[Tura].getPosition()+dicenum);
-    if(player[Tura].getPosition()>31) player[Tura].setPosition(player[Tura].getPosition()+dicenum -33);
+    if(player[Tura].getPosition()>39) player[Tura].setPosition(player[Tura].getPosition()-38);
 
     if(board.cards[player[Tura].getPosition()]->Owner!=(Tura) && board.cards[player[Tura].getPosition()]->Owner!=(9))
     {
@@ -42,4 +42,8 @@ void Game::Buy()
 void Game::Dice()
 {
     dicenum = rand() % 6 +1;
+}
+Game::~Game()
+{
+
 }

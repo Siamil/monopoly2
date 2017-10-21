@@ -5,6 +5,7 @@
 #include <player.h>
 #include <QString>
 #include <game.h>
+#include <QBoxLayout>
 
 namespace Ui {
 class MainWindow;
