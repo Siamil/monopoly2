@@ -6,6 +6,10 @@
 #include <QString>
 #include <game.h>
 #include <QBoxLayout>
+#include "boardui.h"
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+
 
 namespace Ui {
 class MainWindow;
@@ -16,9 +20,10 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 
-
+BoardUI *board;
 Game game;
-
+QHBoxLayout *Hlayout;
+QVBoxLayout *Vlayout ;
 
 public:
     explicit MainWindow(QWidget *parent = 0);

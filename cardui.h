@@ -3,7 +3,7 @@
 #include <QLabel>
 #include "card.h"
 
-class cardUI : public QLabel
+class CardUI : public QLabel
 {
 public:
     Q_OBJECT
@@ -11,13 +11,13 @@ public:
     QLabel *Owner;
     int NrCard;
 public:
-    cardUI(QWidget *parent);
-    cardUI();
+    CardUI(QWidget *parent);
+    CardUI();
     void setCard(Card *cardd);
     void setImage(QString file);
     void setOwner();
     void setNrcard();
-    ~cardUI();
+    ~CardUI();
  public slots:
    void RefreshUI();
 };

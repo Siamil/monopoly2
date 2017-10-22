@@ -7,7 +7,7 @@ Board::Board()
 
 
 
-for (int i = 0; i< 40; i++)
+for (int i = 0; i< 16; i++)
 {
  Card* card = new Card();
 cards.push_back(card);
@@ -120,7 +120,7 @@ cards.push_back(card);
     cards[15]->setBuyable(false);
     cards[15]->setType("train");
 
-    cards[16]->setNrCard(16);
+   /* cards[16]->setNrCard(16);
     cards[16]->setOwner(9);
     cards[16]->setPrice(180);
     cards[16]->setBuyable(true);
@@ -278,7 +278,7 @@ cards.push_back(card);
     cards[39]->setType("rent");
     cards[39]->setColour("blue");
 
-
+*/
 
 
 
@@ -286,7 +286,7 @@ cards.push_back(card);
 Board::~Board()
 {
 
-for (int i = 0; i< 40; i++)
+for (int i = 0; i< 16; i++)
 {
     delete cards[i];
 }

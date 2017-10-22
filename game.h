@@ -8,6 +8,7 @@ public:
     Player *player;
     int Numofplayers=2;
     Board board;
+    Board* boardPTR=&board;
     int Tura=0;
     int dicenum;
     Game();

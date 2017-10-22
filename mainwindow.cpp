@@ -4,13 +4,27 @@
 #include <player.h>
 #include "game.h"
 #include <QBoxLayout>
+#include <boardui.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
    Game game;
+
+   BoardUI* boardUI = new BoardUI(game.boardPTR);
+
+   for(int i=0;i<16;i++)
+   {
+       boardUI->cardsUI[i]->setParent(this);
+      // boardUI->cardsUI[i]->setLayout(ui->gridLayout);
+
+   //boardUI->cardsUI[i]->show();
+
+   }
+
    ui->bMove->setEnabled(false);
    ui->bZakoncz->setEnabled(false);
    ui->lTura->setText( "Tura gracza :"+QString::number(game.Tura+1));

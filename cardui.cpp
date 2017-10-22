@@ -1,37 +1,38 @@
 #include "cardui.h"
 
-cardUI::cardUI (QWidget *parent)
+CardUI::CardUI (QWidget *parent)
         : QLabel(parent)
 {}
 
-cardUI::cardUI()
+CardUI::CardUI()
 {
 
 }
-void cardUI::setCard(Card *cardd)
+void CardUI::setCard(Card *cardd)
 {
     this->card=cardd;
 }
-void cardUI::setImage(QString file)
+void CardUI::setImage(QString file)
 {
     this->setText(file);
 }
-void cardUI::setOwner()
+void CardUI::setOwner()
 {
+
     this->Owner->setText(QString::number(card->getOwner()));
 }
-void cardUI::setNrcard()
+void CardUI::setNrcard()
 {
     this->NrCard=card->getNrCard();
 }
 
 
-void cardUI::RefreshUI()
+void CardUI::RefreshUI()
 {
 this->setOwner();
 
 }
-cardUI::~cardUI()
+CardUI::~CardUI()
 
 {
 

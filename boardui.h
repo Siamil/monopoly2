@@ -7,11 +7,14 @@
 #include <board.h>
 
 
+
 class BoardUI : public QLabel
 {
 public:
-    QVector<cardUI*> cardsUI;
-    BoardUI();
+    QVector<CardUI*> cardsUI;
+    Board * boardPtr;
+    BoardUI(Board* ptrToBoard);
+    int x,y;
 
     ~BoardUI();
 };
