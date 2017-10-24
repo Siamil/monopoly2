@@ -2,8 +2,18 @@
 
 Board::Board()
 {
+for (int i =0; i<Numofplayers; i++)
+{
+    Player* player = new Player();
+    players.push_back(player);
+}
+    players[0]->setCash(1000);
+    players[0]->setPosition(0);
+    players[0]->setNrPlayer(0);
 
-
+    players[1]->setCash(1000);
+    players[1]->setPosition(0);
+    players[1]->setNrPlayer(1);
 
 
 

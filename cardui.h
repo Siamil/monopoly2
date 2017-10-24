@@ -9,6 +9,7 @@ public:
     Q_OBJECT
     Card *card;
     QLabel *Owner;
+public:
     int NrCard;
 public:
     CardUI(QWidget *parent);

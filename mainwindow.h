@@ -38,7 +38,7 @@ private slots:
 
     void on_bMove_clicked();
 
-    void on_bZakoncz_clicked();
+    void on_bEnd_clicked();
 
     void on_bBuy_clicked();
 

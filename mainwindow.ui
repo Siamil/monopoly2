@@ -122,7 +122,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="bZakoncz">
+         <widget class="QPushButton" name="bEnd">
           <property name="text">
            <string>zakoncz</string>
           </property>
@@ -183,7 +183,7 @@
   <tabstop>bSell</tabstop>
   <tabstop>bBuy</tabstop>
   <tabstop>bMove</tabstop>
-  <tabstop>bZakoncz</tabstop>
+  <tabstop>bEnd</tabstop>
   <tabstop>bDice</tabstop>
  </tabstops>
  <resources/>

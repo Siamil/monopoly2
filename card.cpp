@@ -35,7 +35,7 @@ void Card::setOwner(int nrG)
 }
 int Card::getOwner()
 {
-    return this->Owner;
+return this->Owner;
 }
 void Card::setBuyable(bool by)
 {

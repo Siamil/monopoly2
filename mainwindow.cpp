@@ -12,24 +12,25 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-   Game game;
+
 
    BoardUI* boardUI = new BoardUI(game.boardPTR);
-
+   //boardUI->player1->setParent(this);
+   //boardUI->player2->setParent(this);
    for(int i=0;i<16;i++)
    {
        boardUI->cardsUI[i]->setParent(this);
-      // boardUI->cardsUI[i]->setLayout(ui->gridLayout);
+      //ui->gridLayout->addWidget(boardUI->cardsUI[i]);
 
    //boardUI->cardsUI[i]->show();
 
    }
 
    ui->bMove->setEnabled(false);
-   ui->bZakoncz->setEnabled(false);
+   ui->bEnd->setEnabled(false);
    ui->lTura->setText( "Tura gracza :"+QString::number(game.Tura+1));
-   ui->lCash1->setText("Pieniadze gracza 1:" + QString::number(game.player[0].getCash()));
-   ui->lCash2->setText("Pieniadze gracza 2:" + QString::number(game.player[1].getCash()));
+   ui->lCash1->setText("Pieniadze gracza 1:" + QString::number(game.board.players[0]->getCash()));
+   ui->lCash2->setText("Pieniadze gracza 2:" + QString::number(game.board.players[1]->getCash()));
 
 }
 
@@ -56,29 +57,29 @@ void MainWindow::on_bMove_clicked()
 {
 
     game.Move();
-    QString s1 = QString::number(game.player[game.Tura].getPosition());
+    QString s1 = QString::number(game.board.players[game.Tura]->getPosition());
     ui->lPosition->setText("Jestes na polu :" +s1);
-    ui->bZakoncz->setEnabled(true);
+    ui->bEnd->setEnabled(true);
     ui->bMove->setEnabled(false);
-    if(game.board.cards[game.player[game.Tura].getPosition()]->Buyable==true)
+    if(game.board.cards[game.board.players[game.Tura]->getPosition()]->Buyable==true)
     {
         ui->bBuy->setEnabled(true);
     }
     else ui->bBuy->setEnabled(false);
 
 
-    ui->lCash1->setText("Pieniadze gracza 1:" + QString::number(game.player[0].getCash()));
-    ui->lCash2->setText("Pieniadze gracza 2:" + QString::number(game.player[1].getCash()));
+    ui->lCash1->setText("Pieniadze gracza 1:" + QString::number(game.board.players[0]->getCash()));
+    ui->lCash2->setText("Pieniadze gracza 2:" + QString::number(game.board.players[1]->getCash()));
 }
 
-void MainWindow::on_bZakoncz_clicked()
+void MainWindow::on_bEnd_clicked()
 {
     game.End();
 
     ui->bDice->setEnabled(true);
-    ui->bZakoncz->setEnabled(false);
+    ui->bEnd->setEnabled(false);
    ui->lTura->setText( "Tura gracza :"+QString::number(game.Tura+1));
-   QString s1 = QString::number(game.player[game.Tura].getPosition());
+   QString s1 = QString::number(game.board.players[game.Tura]->getPosition());
    ui->lPosition->setText("Jestes na polu :" +s1);
 }
 
@@ -86,7 +87,7 @@ void MainWindow::on_bBuy_clicked()
 {
 
     game.Buy();
-    ui->lCash1->setText("Pieniadze gracza 1:" + QString::number(game.player[0].getCash()));
-    ui->lCash2->setText("Pieniadze gracza 2:" + QString::number(game.player[1].getCash()));
+    ui->lCash1->setText("Pieniadze gracza 1:" + QString::number(game.board.players[0]->getCash()));
+    ui->lCash2->setText("Pieniadze gracza 2:" + QString::number(game.board.players[1]->getCash()));
     ui->bBuy->setEnabled(false);
 }

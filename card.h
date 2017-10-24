@@ -9,6 +9,7 @@ public:
     int NrCard;
 
     int Price;
+public:
     int Owner;
 
     bool Buyable;

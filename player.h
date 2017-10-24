@@ -3,14 +3,15 @@
 #include <QString>
 #include "card.h"
 #include <QVector>
+#include <QObject>
 using namespace std;
-class Player
+class Player :QObject
 {
 
     int NrPlayer;
 public:
     int Cash;
-    int Position;
+    int Position=0;
     QVector <Card> *OwnedCards;
 
 
@@ -24,6 +25,8 @@ public:
     void setCash(int il);
     void setPosition(int pozz);
     void setNrPlayer(int nr);
+    signals:
+    void DataChanged();
 
 ~Player();
 };

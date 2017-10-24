@@ -17,6 +17,10 @@ Player::Player()
 {
 
 }
+void Player::DataChanged()
+{
+
+}
 int Player::getNrPlayer()
 {
 return this->NrPlayer;
@@ -32,14 +36,17 @@ return this->Position;
 void Player::setCash(int il)
 {
 this->Cash=il;
+    emit DataChanged();
 }
 void Player::setPosition(int pozz)
 {
 this->Position=pozz;
+   emit DataChanged();
 }
 void Player::setNrPlayer(int nr)
 {
     this->NrPlayer=nr;
+    emit DataChanged();
 }
 
 Player::~Player()
