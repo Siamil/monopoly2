@@ -5,19 +5,25 @@
 
 class Game
 {
-public:
-
     Board board;
-    Board* boardPTR=&board;
+    QVector<Player*> playerPointers;
+    Player* currentPlayer;
 
-    int Tura=0;
-    int dicenum;
-    Game();
-    void Move();
-    void End();
-    void Buy();
+    const int DiceMaxNumber = 6;
+
+public:
+    Game(int numberOfPlayers);
+
+    void MovePlayer();
+    void EndPlayerTurn();
+    void BuyProperty();
     void Dice();
+
+
     ~Game();
+
+private:
+    int ThrowDice();
 };
 
 #endif // GAME_H

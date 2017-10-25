@@ -4,31 +4,31 @@
 #include "card.h"
 #include <QVector>
 #include <QObject>
-using namespace std;
-class Player :QObject
+
+class Player :
+        QObject
 {
-
     int NrPlayer;
-public:
     int Cash;
-    int Position=0;
-    QVector <Card> *OwnedCards;
-
-
+    Card* currentPosition;
+    QVector <Card> *ownedCards;
 
 public:
    Player();
    Player(int num, int cash=0, int poz=0 );
-    int getNrPlayer();
+
     int getCash();
-    int getPosition();
-    void setCash(int il);
-    void setPosition(int pozz);
-    void setNrPlayer(int nr);
+    Card* getPosition();
+
+    void setCash(int newAmount);
+    void setPosition(Card* newPosition);
+
+    ~Player();
+
     signals:
     void DataChanged();
 
-~Player();
+
 };
 
 #endif // GRACZ_H

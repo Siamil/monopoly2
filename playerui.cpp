@@ -15,7 +15,8 @@ void PlayerUI::setPosition()
     this->card=&(card[player->Position]);
     //int y= card->y();
 
-    //this->setGeometry(card->normalGeometry());
+    QRect tmpGeo = card->normalGeometry();
+    this->setGeometry(tmpGeo);
 
 }
 void PlayerUI::RefreshUI()

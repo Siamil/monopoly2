@@ -1,11 +1,12 @@
 #include "game.h"
 #include "board.h"
-Game::Game()
+Game::Game(int numberOfPlayers)
 {
-
-
-
+    for (int i = 0; i < numberOfPlayers; ++i)
+        playerPointers.push_back(new Player());
 }
+
+
 void Game::Move()
 
 {
@@ -31,17 +32,23 @@ void Game::End()
     else Tura=0;
 }
 void Game::Buy()
-
 {
     board.cards[board.players[Tura]->getPosition()]->setBuyable(false);
     board.cards[board.players[Tura]->getPosition()]->setOwner(Tura);
     board.players[Tura]->setCash(board.players[Tura]->getCash() - board.cards[board.players[Tura]->getPosition()]->Price);
 }
+
+
 void Game::Dice()
 {
-    dicenum = rand() % 6 +1;
+    dicenum =
 }
 Game::~Game()
 {
 
+}
+
+int Game::ThrowDice()
+{
+    return rand() % DiceMaxNumber +1;
 }

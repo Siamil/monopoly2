@@ -21,17 +21,17 @@ void Card::setNrCard(int nr)
 {
     this->NrCard=nr;
 }
-void Card::setPrice(int ck)
+void Card::setPrice(int price)
 {
-    this->Price=ck;
+    this->Price=price;
 }
 int Card::getPrice()
 {
     return this->Price;
 }
-void Card::setOwner(int nrG)
+void Card::setOwner(Player *newOwner)
 {
-    this->Owner=nrG;
+    this->Owner=newOwner;
 }
 int Card::getOwner()
 {

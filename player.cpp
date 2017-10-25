@@ -29,7 +29,7 @@ int Player::getCash()
 {
 return this->Cash;
 }
-int Player::getPosition()
+Card *Player::getPosition()
 {
 return this->Position;
 }
@@ -38,9 +38,9 @@ void Player::setCash(int il)
 this->Cash=il;
     emit DataChanged();
 }
-void Player::setPosition(int pozz)
+void Player::setPosition(Card *newPosition)
 {
-this->Position=pozz;
+this->Position=newPosition;
    emit DataChanged();
 }
 void Player::setNrPlayer(int nr)

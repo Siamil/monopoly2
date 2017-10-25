@@ -6,11 +6,8 @@
 
 class Board
 {
-public:
     QVector<Card*> cards;
-    QVector<Player*> players;
-
-    int Numofplayers=2;
+public:    
     Board();
     ~Board();
 };

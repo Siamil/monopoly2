@@ -33,7 +33,7 @@ BoardUI::BoardUI(Board *ptrToBoard)
     PlayerUI* player2 = new PlayerUI();
     player1->setPlayer(boardPtr->players[0]);
 
-    //player1->setPosition();
+    player1->setPosition();
     player2->setPlayer(boardPtr->players[1]);
 
    // player2->setPosition();

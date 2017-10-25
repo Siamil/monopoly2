@@ -1,43 +1,41 @@
 #ifndef KARTA_H
 #define KARTA_H
 #include<QString>
+#include<QColor>
 
 class Card
 {
+    int price;
+
+    bool buyable;
+    QString colour;
+    CardType type;
+
 
 public:
-    int NrCard;
 
-    int Price;
-public:
-    int Owner;
-
-    bool Buyable;
-    QString Colour;
-    QString Type;
-public:
-
+    enum CardType {
+        Start,
+        Property,
+        Jail
+    }
 
     Card();
-
-    Card(int nr, int price, int owner, QString colour);
-
-
     ~Card();
-    //Card(int nr, int price, int owner, QString colour);
 
-
-    int getNrCard();
-    void setPrice(int ck);
+    void setPrice(int price);
     int getPrice();
-    void setOwner(int nrG);
-    int getOwner();
-    void setNrCard(int nr);
-    void setBuyable(bool by);
+
+    void setOwner(Player* newOwner);
+    Player* getOwner();
+
+    void setBuyable(bool isBuyable);
     bool getBuyable();
-    void setColour(QString col);
+
+    void setColor(QColor col);
+    QColor getColor();
+
     void setType(QString type);
-    QString getColour();
     QString getType();
 
 
