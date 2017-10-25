@@ -25,12 +25,14 @@ Game game;
 QHBoxLayout *Hlayout;
 QVBoxLayout *Vlayout ;
 
+const int numberOfPLayers = 4;
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
 private slots:
-    int on_bDice_clicked();
+//    int on_bDice_clicked();
 
 
 

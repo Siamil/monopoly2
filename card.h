@@ -5,20 +5,26 @@
 
 class Card
 {
-    int price;
-
-    bool buyable;
-    QString colour;
-    CardType type;
-
-
 public:
+
 
     enum CardType {
         Start,
         Property,
         Jail
-    }
+    };
+
+
+    private:
+    int price;
+
+    bool buyable;
+    QColor color;
+    CardType type;
+
+public:
+
+
 
     Card();
     ~Card();
@@ -26,17 +32,17 @@ public:
     void setPrice(int price);
     int getPrice();
 
-    void setOwner(Player* newOwner);
-    Player* getOwner();
-
     void setBuyable(bool isBuyable);
     bool getBuyable();
 
     void setColor(QColor col);
     QColor getColor();
 
-    void setType(QString type);
-    QString getType();
+    void setType(CardType type);
+    CardType getType();
+
+    int calculatePayment();
+
 
 
 protected:

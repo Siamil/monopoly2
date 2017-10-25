@@ -12,12 +12,11 @@ void PlayerUI::setPlayer(Player *player)
 
 void PlayerUI::setPosition()
 {
-    this->card=&(card[player->Position]);
-    //int y= card->y();
+//    this->card=&(card[player->Position]);
+//    //int y= card->y();
 
-    QRect tmpGeo = card->normalGeometry();
-    this->setGeometry(tmpGeo);
-
+//    QRect tmpGeo = card->normalGeometry();
+//    this->setGeometry(tmpGeo);
 }
 void PlayerUI::RefreshUI()
 {

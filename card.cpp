@@ -6,60 +6,51 @@
 Card::Card (){
 
 }
-Card::Card(int nr, int price, int owner, QString colour)
-{
-this->NrCard=nr;
-    this->Price=price;
-    this->Owner=owner;
-  this->Colour=colour;
-}
-int Card::getNrCard()
-{
-return this->NrCard;
-}
-void Card::setNrCard(int nr)
-{
-    this->NrCard=nr;
-}
+
+
 void Card::setPrice(int price)
 {
-    this->Price=price;
+    this->price=price;
 }
 int Card::getPrice()
 {
-    return this->Price;
+    return price;
 }
-void Card::setOwner(Player *newOwner)
+
+void Card::setBuyable(bool isBuyable)
 {
-    this->Owner=newOwner;
-}
-int Card::getOwner()
-{
-return this->Owner;
-}
-void Card::setBuyable(bool by)
-{
-    this->Buyable=by;
+    this->buyable=isBuyable;
 }
 bool Card::getBuyable()
 {
-    return this->Buyable;
+    return this->buyable;
 }
-void Card::setColour(QString col)
+void Card::setColor(QColor col)
 {
-    this->Colour=col;
+    this->color=col;
 }
-void Card::setType(QString type)
+void Card::setType(CardType type)
 {
-    this->Type=type;
+    this->type=type;
 }
-QString Card::getColour()
+
+int Card::calculatePayment()
 {
-    return this->Colour;
+    // TODO. Vary the payment based on number of houses/hotels.
+    // For now just take 1/10. houses and hotels are gonna be implemented later
+
+    int payment = price / 10;
+    return payment;
 }
-QString Card::getType()
+
+QColor Card::getColor()
 {
-    return this->Type;
+    return color;
+}
+
+Card::CardType Card::getType()
+{
+    return type;
 }
 Card::~Card() {
 

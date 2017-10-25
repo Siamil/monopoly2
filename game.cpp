@@ -1,48 +1,71 @@
 #include "game.h"
 #include "board.h"
+
+Game::Game()
+{
+
+}
+
 Game::Game(int numberOfPlayers)
 {
+    this->numberOfPlayers = numberOfPlayers;
+
     for (int i = 0; i < numberOfPlayers; ++i)
-        playerPointers.push_back(new Player());
-}
-
-
-void Game::Move()
-
-{
-
-
-    board.players[Tura]->setPosition(board.players[Tura]->getPosition()+dicenum);
-    if(board.players[Tura]->getPosition()>15) board.players[Tura]->setPosition(board.players[Tura]->getPosition()-14);
-
-    int tempplayerowner=board.cards[board.players[Tura]->getPosition()]->Owner;
-    int tempcardprice=board.cards[board.players[Tura]->getPosition()]->getPrice();
-
-    if(tempplayerowner!=(Tura) && board.cards[board.players[Tura]->getPosition()]->Owner!=(9))
     {
-            board.players[Tura]->setCash(board.players[Tura]->getCash()- (tempcardprice/10));
-            board.players[tempplayerowner]->setCash(board.players[tempplayerowner]->getCash()+((tempcardprice)/10));
-}
-}
-void Game::End()
-{
-    if(Tura<board.Numofplayers-1){
-        Tura++;
+        Player* player = new Player();
+
+        player->setCash(1000);
+        player->setPosition(board.getStartCard());
+        playerPointers.push_back(player);
     }
-    else Tura=0;
+
+    currentPlayer = playerPointers.first();
 }
-void Game::Buy()
+
+void Game::MovePlayer()
+
 {
-    board.cards[board.players[Tura]->getPosition()]->setBuyable(false);
-    board.cards[board.players[Tura]->getPosition()]->setOwner(Tura);
-    board.players[Tura]->setCash(board.players[Tura]->getCash() - board.cards[board.players[Tura]->getPosition()]->Price);
+    int throwResult = ThrowDice();
+    currentPlayer->setPosition(board.calculateNewPosition(currentPlayer,throwResult));
+
+    Card* newPosition = currentPlayer->getPosition();
+
+    // Let's check whether the card is taken or not.
+    Player* owner = getCardOwner(newPosition);
+
+    if (owner ==  NULL) {
+        // We can buy it
+    } else if (owner == currentPlayer) {
+        // We can build on it
+    } else {
+        // Sadly we need to pay rent
+        int payment = newPosition->calculatePayment();
+        transferMoney(currentPlayer, owner, payment);
+    }
+}
+
+void Game::EndPlayerTurn()
+{
+   int currentPlayerIndex = playerPointers.indexOf(currentPlayer);
+   int nextOne = (currentPlayerIndex + 1) % numberOfPlayers;
+
+   currentPlayer = playerPointers[nextOne];
 }
 
 
-void Game::Dice()
+void Game::BuyProperty()
 {
-    dicenum =
+    Card* playerPosition = currentPlayer->getPosition();
+    int price = playerPosition->getPrice();
+    currentPlayer->addCard(playerPosition);
+    payBank(currentPlayer, price);
 }
+
+Board *Game::getBoardPtr()
+{
+    return &board;
+}
+
 Game::~Game()
 {
 
@@ -50,5 +73,38 @@ Game::~Game()
 
 int Game::ThrowDice()
 {
-    return rand() % DiceMaxNumber +1;
+    int throwResult = rand() % DiceMaxNumber +1;
+    emit newDiceThrow( throwResult);
+    return throwResult;
+
 }
+
+Player *Game::getCardOwner(Card *card)
+{
+    for (int i = 0; i < playerPointers.size(); i++) {
+        Player* player = playerPointers[i];
+
+
+        if (player->ownsCard(card)) return player;
+    }
+
+    return NULL;
+}
+
+void Game::transferMoney(Player *sender, Player* receiver, int amount)
+{
+    sender->setCash(sender->getCash() - amount);
+    receiver->setCash(receiver->getCash() + amount);
+}
+
+void Game::payBank(Player *player, int amount)
+{
+    player->setCash(player->getCash() - amount);
+}
+
+void Game::receiveFromBank(Player *player, int amount)
+{
+    player->setCash(player->getCash() + amount);
+}
+
+

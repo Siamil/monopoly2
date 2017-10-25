@@ -5,14 +5,6 @@
 
 
 
-
-Player::Player(int num, int cash, int poz )
-{
-this->NrPlayer=num;
-this->Cash=cash;
-this->Position=poz;
- this->OwnedCards =new QVector<Card>();
-}
 Player::Player()
 {
 
@@ -21,33 +13,39 @@ void Player::DataChanged()
 {
 
 }
-int Player::getNrPlayer()
-{
-return this->NrPlayer;
-}
+
+
 int Player::getCash()
 {
 return this->Cash;
 }
 Card *Player::getPosition()
 {
-return this->Position;
+return this->currentPosition;
 }
-void Player::setCash(int il)
+void Player::setCash(int newAmount)
 {
-this->Cash=il;
+this->Cash=newAmount;
     emit DataChanged();
 }
 void Player::setPosition(Card *newPosition)
 {
-this->Position=newPosition;
-   emit DataChanged();
-}
-void Player::setNrPlayer(int nr)
-{
-    this->NrPlayer=nr;
+    currentPosition=newPosition;
     emit DataChanged();
 }
+
+bool Player::ownsCard(Card *card)
+{
+    int index = ownedCards.indexOf(card);
+    bool doIHaveIt = index >= 0;
+    return doIHaveIt;
+}
+
+void Player::addCard(Card *card)
+{
+    ownedCards.push_back(card);
+}
+
 
 Player::~Player()
 {

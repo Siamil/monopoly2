@@ -11,7 +11,7 @@ class Player :
     int NrPlayer;
     int Cash;
     Card* currentPosition;
-    QVector <Card> *ownedCards;
+    QVector <Card*> ownedCards;
 
 public:
    Player();
@@ -22,6 +22,10 @@ public:
 
     void setCash(int newAmount);
     void setPosition(Card* newPosition);
+
+    bool ownsCard(Card* card);
+
+    void addCard(Card* card);
 
     ~Player();
 

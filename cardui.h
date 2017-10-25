@@ -16,8 +16,7 @@ public:
     CardUI();
     void setCard(Card *cardd);
     void setImage(QString file);
-    void setOwner();
-    void setNrcard();
+
     ~CardUI();
  public slots:
    void RefreshUI();
