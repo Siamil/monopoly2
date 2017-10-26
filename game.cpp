@@ -6,9 +6,9 @@ Game::Game()
 
 }
 
-Game::Game(int numberOfPlayers)
+Game::Game(int _numberOfPlayers)
+    : numberOfPlayers(_numberOfPlayers)
 {
-    this->numberOfPlayers = numberOfPlayers;
 
     for (int i = 0; i < numberOfPlayers; ++i)
     {

@@ -15,7 +15,7 @@ class Game : QObject
 
 public:
     Game();
-    Game(int numberOfPlayers);
+    Game(int _numberOfPlayers);
 
     void MovePlayer();
     void EndPlayerTurn();

@@ -19,13 +19,14 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-
+const int numberOfPLayers; // It needs to be prior Game game.
+                           // Because order here matters. Not one in initialization list of constructor
 BoardUI *board;
 Game game;
 QHBoxLayout *Hlayout;
 QVBoxLayout *Vlayout ;
 
-const int numberOfPLayers = 4;
+
 
 public:
     explicit MainWindow(QWidget *parent = 0);

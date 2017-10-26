@@ -9,6 +9,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
+    numberOfPLayers(4),
     game(numberOfPLayers)
 {
 
