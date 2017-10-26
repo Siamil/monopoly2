@@ -22,13 +22,6 @@ Game::Game(int _numberOfPlayers)
     currentPlayer = playerPointers.first();
 }
 
-Game::Game(int numberOfPlayers)
-{
-    this->numberOfPlayers = numberOfPlayers;
-
-
-}
-
 void Game::MovePlayer()
 
 {
