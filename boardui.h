@@ -6,18 +6,19 @@
 #include <QBoxLayout>
 #include <board.h>
 #include "playerui.h"
+#include "game.h"
 
 
 class BoardUI : public QLabel
 {
 public:
     QVector<CardUI*> cardsUI;
-
+    Game * gamePtr;
     Board * boardPtr;
-    PlayerUI *player1;
-    PlayerUI *player2;
+    QVector<PlayerUI*> playersUI;
+
     int NumOfCards=16;
-    BoardUI(Board* ptrToBoard);
+    BoardUI(Board* ptrToBoard, Game *ptrToGame);
     int x,y;
 
     ~BoardUI();

@@ -22,6 +22,13 @@ Game::Game(int _numberOfPlayers)
     currentPlayer = playerPointers.first();
 }
 
+Game::Game(int numberOfPlayers)
+{
+    this->numberOfPlayers = numberOfPlayers;
+
+
+}
+
 void Game::MovePlayer()
 
 {
@@ -61,9 +68,19 @@ void Game::BuyProperty()
     payBank(currentPlayer, price);
 }
 
+Player *Game::getPlayerPointer(int index)
+{
+    return playerPointers.at(index);
+}
+
 Board *Game::getBoardPtr()
 {
     return &board;
+}
+
+int Game::getNumberOfPlayers()
+{
+    return numberOfPlayers;
 }
 
 Game::~Game()

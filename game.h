@@ -9,11 +9,12 @@ class Game : QObject
     Board board;
     QVector<Player*> playerPointers;
     Player* currentPlayer;
-    int numberOfPlayers;
+    int numberOfPlayers=4;
 
     const int DiceMaxNumber = 6;
 
 public:
+
     Game();
     Game(int _numberOfPlayers);
 
@@ -22,8 +23,9 @@ public:
     void BuyProperty();
     void Dice();
 
-
+    Player* getPlayerPointer(int index);
     Board* getBoardPtr();
+    int getNumberOfPlayers();
 
 
 

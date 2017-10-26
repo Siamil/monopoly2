@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
 
-   board = new BoardUI(game.getBoardPtr());
+   board = new BoardUI(game.getBoardPtr(), &game);
    //boardUI->player1->setParent(this);
    //boardUI->player2->setParent(this);
    for(int i=0;i<16;i++)
