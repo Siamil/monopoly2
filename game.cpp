@@ -3,13 +3,7 @@
 
 Game::Game()
 {
-
-}
-
-Game::Game(int numberOfPlayers)
-{
-    this->numberOfPlayers = numberOfPlayers;
-
+    this ->numberOfPlayers=4;
     for (int i = 0; i < numberOfPlayers; ++i)
     {
         Player* player = new Player();
@@ -20,6 +14,13 @@ Game::Game(int numberOfPlayers)
     }
 
     currentPlayer = playerPointers.first();
+}
+
+Game::Game(int numberOfPlayers)
+{
+    this->numberOfPlayers = numberOfPlayers;
+
+
 }
 
 void Game::MovePlayer()
