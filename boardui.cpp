@@ -1,9 +1,10 @@
 #include "boardui.h"
 
 
-BoardUI::BoardUI(Board *ptrToBoard)
+BoardUI::BoardUI(Board *ptrToBoard, Game *ptrToGame)
 {
     boardPtr = ptrToBoard;
+    gamePtr = ptrToGame;
     x=120;
     y=120;
 
@@ -28,16 +29,14 @@ BoardUI::BoardUI(Board *ptrToBoard)
     else if (i<NumOfCards) cardsUI[i]->setGeometry(10,(50+(4*y))-((i-12)*y),x,y);
 
    }
-//    PlayerUI* player1 = new PlayerUI();
-//    PlayerUI* player2 = new PlayerUI();
-//    player1->setPlayer(boardPtr->players[0]);
+    for (int i=0; i<gamePtr->getNumberOfPlayers();++i)
+    {
+        PlayerUI* playerUI = new PlayerUI();
+        playerUI->setPlayer(gamePtr->getPlayerPointer(i));
+        playersUI.push_back(playerUI);
 
-//    player1->setPosition();
-//    player2->setPlayer(boardPtr->players[1]);
+    }
 
-   // player2->setPosition();
-   // player1->setText("player1");
-   // player2->setText("player2");
 }
 BoardUI::~BoardUI()
 {

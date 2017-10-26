@@ -61,9 +61,19 @@ void Game::BuyProperty()
     payBank(currentPlayer, price);
 }
 
+Player *Game::getPlayerPointer(int index)
+{
+    return playerPointers.at(index);
+}
+
 Board *Game::getBoardPtr()
 {
     return &board;
+}
+
+int Game::getNumberOfPlayers()
+{
+    return numberOfPlayers;
 }
 
 Game::~Game()

@@ -22,8 +22,9 @@ public:
     void BuyProperty();
     void Dice();
 
-
+    Player* getPlayerPointer(int index);
     Board* getBoardPtr();
+    int getNumberOfPlayers();
 
 
 
