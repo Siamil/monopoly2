@@ -11,7 +11,9 @@ public:
     enum CardType {
         Start,
         Property,
-        Jail
+        Jail,
+        Tax,
+        Bonus
     };
 
 

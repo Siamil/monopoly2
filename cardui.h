@@ -18,7 +18,7 @@ public:
     CardUI();
     void setCard(Card *cardd);
     Card* getCard();
-    void draw(QPainter *painter, int x, int y, int w, int h, QColor color);
+    void draw(QPainter *painter, int x, int y, int w, int h, Card *card);
 
     ~CardUI();
  public slots:

@@ -11,10 +11,27 @@ Board::Board()
     for (int i = 0; i< NumberOfCards; i++)
     {
         Card* card = new Card();
-        card->setColor(Qt::green);
+        card->setType(Card::Property);
+        card->setPrice(200+i*50);
         cards.push_back(card);
     }
+    cards[0]->setType(Card::Start);
+    cards[8]->setType(Card::Jail);
+    cards[12]->setType(Card::Bonus);
+    cards[1]->setColor(Qt::blue);
 
+    cards[2]->setColor(Qt::blue);
+    cards[3]->setType(Card::Tax);
+    cards[4]->setColor(Qt::blue);
+    cards[5]->setColor(Qt::red);
+    cards[6]->setType(Card::Tax);
+    cards[7]->setColor(Qt::red);
+    cards[9]->setColor(Qt::red);
+    cards[10]->setColor(Qt::yellow);
+    cards[11]->setColor(Qt::yellow);
+    cards[13]->setColor(Qt::yellow);
+    cards[14]->setColor(Qt::green);
+    cards[15]->setColor(Qt::green);
 
 
 }
