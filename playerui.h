@@ -12,7 +12,7 @@ public:
     CardUI *card;
 public:
     PlayerUI();
-    void setPosition();
+    void setPosition(Card *newPosition);
     void setPlayer(Player *player);
 
     public slots:

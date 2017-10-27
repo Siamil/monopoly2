@@ -2,6 +2,8 @@
 #define CARDUI_H
 #include <QLabel>
 #include "card.h"
+#include <QtCore>
+#include <QPainter>
 
 class CardUI : public QLabel
 {
@@ -15,7 +17,8 @@ public:
     CardUI(QWidget *parent);
     CardUI();
     void setCard(Card *cardd);
-    void setImage(QString file);
+    Card* getCard();
+    void draw(QPainter *painter, int x, int y, int w, int h, QColor color);
 
     ~CardUI();
  public slots:

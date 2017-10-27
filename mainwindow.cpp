@@ -5,6 +5,7 @@
 #include "game.h"
 #include <QBoxLayout>
 #include <boardui.h>
+#include "cardui.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -39,6 +40,12 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::paintEvent(QPaintEvent *e)
+{
+    QPainter painter(this);
+    board->drawCards(&painter,this->size());
 }
 
 

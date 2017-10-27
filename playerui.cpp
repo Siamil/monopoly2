@@ -10,15 +10,16 @@ void PlayerUI::setPlayer(Player *player)
     this->player=player;
 }
 
-void PlayerUI::setPosition()
+void PlayerUI::setPosition(Card *newPosition)
 {
-//    this->card=&(card[player->Position]);
+   // QRect tmpGeo = newPosition->normalGeometry();
+  //  this->card=&(card[player->Position]);
 //    //int y= card->y();
 
-//    QRect tmpGeo = card->normalGeometry();
+//
 //    this->setGeometry(tmpGeo);
 }
 void PlayerUI::RefreshUI()
 {
-    this->setPosition();
+    //this->setPosition();
 }

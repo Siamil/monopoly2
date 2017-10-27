@@ -11,6 +11,7 @@ Board::Board()
     for (int i = 0; i< NumberOfCards; i++)
     {
         Card* card = new Card();
+        card->setColor(Qt::green);
         cards.push_back(card);
     }
 
@@ -30,6 +31,8 @@ Card *Board::getCard(int index)
 {
     return cards.at(index);
 }
+
+
 Card *Board::calculateNewPosition(Player *player, int throwResult)
 {
     Card* tempCard= player->getPosition();
