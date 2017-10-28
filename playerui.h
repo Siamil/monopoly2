@@ -14,7 +14,7 @@ public:
     PlayerUI();
     void setPosition(Card *newPosition);
     void setPlayer(Player *player);
-
+    void draw(QPainter *painter, int x, int y, int w, int h, Player *player);
     public slots:
     void RefreshUI();
 };

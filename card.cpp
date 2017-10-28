@@ -17,6 +17,16 @@ int Card::getPrice()
     return price;
 }
 
+void Card::setNrCard(int nrCard)
+{
+    this->nrCard=nrCard;
+}
+
+int Card::getNrCard()
+{
+    return nrCard;
+}
+
 void Card::setBuyable(bool isBuyable)
 {
     this->buyable=isBuyable;

@@ -19,6 +19,23 @@ void BoardUI::drawCards(QPainter* painter,QSize size)
     }
 }
 
+void BoardUI::drawPlayers(QPainter *painter, QSize size)
+{
+    int x=(size.width()) / xfactor;
+    int y=(size.height()) / yfactor;
+    for (int i = 0; i < gamePtr ->getNumberOfPlayers(); i++)
+    {
+        Player* tempPlayer = gamePtr -> getPlayerPointer(i);
+        int index = tempPlayer -> getPosition() -> getNrCard();
+
+        if(index<(NumOfCards/4)) playersUI[i]->draw(painter,xspace+(index*x),yspace,x,y,tempPlayer);
+        else if (index<(NumOfCards/2))    playersUI[i]->draw(painter,xspace+((NumOfCards/4)*x),yspace+((index-(NumOfCards/4))*y),x,y,tempPlayer);
+
+        else if (index<(NumOfCards/4)*3) playersUI[i]->draw(painter,xspace+((NumOfCards/4)*x)-((i-(NumOfCards/2))*x),yspace+((NumOfCards/4)*y),x,y,tempPlayer);
+        else if (index<NumOfCards) playersUI[i]->draw(painter,xspace,(yspace+((NumOfCards/4)*y))-((index-(NumOfCards/4)*3)*y),x,y,tempPlayer);
+    }
+}
+
 BoardUI::BoardUI(Board *ptrToBoard, Game *ptrToGame)
 {
     boardPtr = ptrToBoard;
@@ -50,6 +67,7 @@ BoardUI::BoardUI(Board *ptrToBoard, Game *ptrToGame)
     {
         PlayerUI* playerUI = new PlayerUI();
         playerUI->setPlayer(gamePtr->getPlayerPointer(i));
+        playerUI->setPosition(ptrToBoard->getStartCard());
         playersUI.push_back(playerUI);
 
     }

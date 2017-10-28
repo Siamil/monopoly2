@@ -15,8 +15,10 @@ public:
     QVector<CardUI*> cardsUI;
     Game * gamePtr;
     Board * boardPtr;
+
     QVector<PlayerUI*> playersUI;
     void drawCards(QPainter *painter, QSize size);
+    void drawPlayers(QPainter *painter, QSize size);
     int NumOfCards=16;
     BoardUI(Board* ptrToBoard, Game *ptrToGame);
     const int xspace=10;

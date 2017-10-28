@@ -17,10 +17,10 @@ public:
     };
 
 
-    private:
+private:
     int price;
-
-    bool buyable;
+    int nrCard;
+    bool buyable=true;
     QColor color;
     CardType type;
 
@@ -33,6 +33,10 @@ public:
 
     void setPrice(int price);
     int getPrice();
+
+    void setNrCard(int nrCard);
+    int getNrCard();
+
 
     void setBuyable(bool isBuyable);
     bool getBuyable();

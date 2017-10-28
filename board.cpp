@@ -13,6 +13,7 @@ Board::Board()
         Card* card = new Card();
         card->setType(Card::Property);
         card->setPrice(200+i*50);
+        card->setNrCard(i);
         cards.push_back(card);
     }
     cards[0]->setType(Card::Start);

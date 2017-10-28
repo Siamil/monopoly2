@@ -18,6 +18,60 @@ Game::Game(int _numberOfPlayers)
         player->setPosition(board.getStartCard());
         playerPointers.push_back(player);
     }
+    switch( numberOfPlayers )
+    {
+    case 2:
+        playerPointers[0]->setColor(Qt::blue);
+        playerPointers[1]->setColor(Qt::green);
+        break;
+
+    case 3:
+        playerPointers[0]->setColor(Qt::blue);
+        playerPointers[1]->setColor(Qt::green);
+        playerPointers[2]->setColor(Qt::red);
+        break;
+
+
+    case 4:
+        playerPointers[0]->setColor(Qt::blue);
+        playerPointers[1]->setColor(Qt::green);
+        playerPointers[2]->setColor(Qt::red);
+        playerPointers[3]->setColor(Qt::yellow);
+        break;
+    case 5:
+        playerPointers[0]->setColor(Qt::blue);
+        playerPointers[1]->setColor(Qt::green);
+        playerPointers[2]->setColor(Qt::red);
+        playerPointers[3]->setColor(Qt::yellow);
+        playerPointers[4]->setColor(Qt::white);
+    case 6:
+        playerPointers[0]->setColor(Qt::blue);
+        playerPointers[1]->setColor(Qt::green);
+        playerPointers[2]->setColor(Qt::red);
+        playerPointers[3]->setColor(Qt::yellow);
+        playerPointers[4]->setColor(Qt::white);
+        playerPointers[5]->setColor(Qt::black);
+    case 7:
+        playerPointers[0]->setColor(Qt::blue);
+        playerPointers[1]->setColor(Qt::green);
+        playerPointers[2]->setColor(Qt::red);
+        playerPointers[3]->setColor(Qt::yellow);
+        playerPointers[4]->setColor(Qt::white);
+        playerPointers[5]->setColor(Qt::black);
+        playerPointers[6]->setColor(Qt::gray);
+    case 8:
+        playerPointers[0]->setColor(Qt::blue);
+        playerPointers[1]->setColor(Qt::green);
+        playerPointers[2]->setColor(Qt::red);
+        playerPointers[3]->setColor(Qt::yellow);
+        playerPointers[4]->setColor(Qt::white);
+        playerPointers[5]->setColor(Qt::black);
+        playerPointers[6]->setColor(Qt::gray);
+        playerPointers[7]->setColor(Qt::darkYellow);
+
+
+        break;
+    }
 
     currentPlayer = playerPointers.first();
 }
@@ -46,10 +100,10 @@ void Game::MovePlayer()
 
 void Game::EndPlayerTurn()
 {
-   int currentPlayerIndex = playerPointers.indexOf(currentPlayer);
-   int nextOne = (currentPlayerIndex + 1) % numberOfPlayers;
+    int currentPlayerIndex = playerPointers.indexOf(currentPlayer);
+    int nextOne = (currentPlayerIndex + 1) % numberOfPlayers;
 
-   currentPlayer = playerPointers[nextOne];
+    currentPlayer = playerPointers[nextOne];
 }
 
 
@@ -59,6 +113,11 @@ void Game::BuyProperty()
     int price = playerPosition->getPrice();
     currentPlayer->addCard(playerPosition);
     payBank(currentPlayer, price);
+}
+
+Player *Game::getCurrentPlayer()
+{
+    return currentPlayer;
 }
 
 Player *Game::getPlayerPointer(int index)

@@ -7,7 +7,7 @@
 class Board
 {
     QVector<Card*> cards;
-    const int NumberOfCards=40;
+    const int NumberOfCards=16;
 public:    
     Card* getStartCard();
     Board();
