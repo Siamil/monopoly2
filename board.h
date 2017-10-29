@@ -14,6 +14,7 @@ public:
     ~Board();
 
     Card* getCard(int index);
+    ;
 
       Card* calculateNewPosition(Player* player, int throwResult);
 };

@@ -22,7 +22,7 @@ public:
     void EndPlayerTurn();
     void BuyProperty();
     void Dice();
-
+    Player *getCurrentPlayer();
     Player* getPlayerPointer(int index);
     Board* getBoardPtr();
     int getNumberOfPlayers();

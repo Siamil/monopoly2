@@ -15,11 +15,16 @@ public:
     QVector<CardUI*> cardsUI;
     Game * gamePtr;
     Board * boardPtr;
-    QVector<PlayerUI*> playersUI;
 
+    QVector<PlayerUI*> playersUI;
+    void drawCards(QPainter *painter, QSize size);
+    void drawPlayers(QPainter *painter, QSize size);
     int NumOfCards=16;
     BoardUI(Board* ptrToBoard, Game *ptrToGame);
-    int x,y;
+    const int xspace=10;
+    const int yspace=50;
+    const int xfactor=7;
+    const int yfactor=6;
 
     ~BoardUI();
 };

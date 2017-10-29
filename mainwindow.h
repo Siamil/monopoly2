@@ -31,6 +31,8 @@ QVBoxLayout *Vlayout ;
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+protected:
+    void paintEvent(QPaintEvent *e);
 
 private slots:
 //    int on_bDice_clicked();

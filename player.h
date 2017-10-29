@@ -6,19 +6,21 @@
 #include <QObject>
 
 class Player :
-        QObject
+        public QObject
 {
+    Q_OBJECT
     int NrPlayer;
     int Cash;
     Card* currentPosition;
     QVector <Card*> ownedCards;
+    QColor color;
 
 public:
-   Player();
-   Player(int num, int cash=0, int poz=0 );
-
+    Player();
     int getCash();
     Card* getPosition();
+    void setColor(QColor color);
+    QColor getColor();
 
     void setCash(int newAmount);
     void setPosition(Card* newPosition);
