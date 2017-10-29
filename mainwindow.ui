@@ -79,13 +79,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="lPosition">
-        <property name="text">
-         <string>Pole:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
@@ -134,13 +127,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QPushButton" name="bDice">
-          <property name="text">
-           <string>Rzuc Kostka</string>
-          </property>
-         </widget>
-        </item>
        </layout>
       </item>
      </layout>
@@ -184,7 +170,6 @@
   <tabstop>bBuy</tabstop>
   <tabstop>bMove</tabstop>
   <tabstop>bEnd</tabstop>
-  <tabstop>bDice</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -19,11 +19,11 @@ Board::Board()
     cards[0]->setType(Card::Start);
     cards[8]->setType(Card::Jail);
     cards[12]->setType(Card::Bonus);
-    cards[1]->setColor(Qt::blue);
+    cards[1]->setColor(Qt::cyan);
 
-    cards[2]->setColor(Qt::blue);
+    cards[2]->setColor(Qt::cyan);
     cards[3]->setType(Card::Tax);
-    cards[4]->setColor(Qt::blue);
+    cards[4]->setColor(Qt::cyan);
     cards[5]->setColor(Qt::red);
     cards[6]->setType(Card::Tax);
     cards[7]->setColor(Qt::red);

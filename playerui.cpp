@@ -12,7 +12,7 @@ void PlayerUI::setPlayer(Player *player)
 
 void PlayerUI::draw(QPainter *painter, int x, int y, int w, int h, Player *player)
 {
-    if(player->getColor()==Qt::red)
+    if(player->getColor()==Qt::darkRed)
     {
     QFont font=painter->font() ;
     font.setPointSize (12);
@@ -46,7 +46,7 @@ void PlayerUI::draw(QPainter *painter, int x, int y, int w, int h, Player *playe
     painter->drawEllipse(rec);
 
 }
-    else if(player->getColor()==Qt::green)
+    else if(player->getColor()==Qt::darkGreen)
     {
     QFont font=painter->font() ;
     font.setPointSize (12);

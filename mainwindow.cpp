@@ -32,12 +32,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->bMove->setEnabled(false);
     ui->bEnd->setEnabled(false);
-    ui->lTura->setText( "Tura gracza :"+(game.getCurrentPlayer()->getColor().name()));
-    ui->lCash1->setText("Pieniadze gracza :" + QString::number(game.getCurrentPlayer()->getCash()));
-//    for(int i; i<numberOfPLayers;i++){
 
-//        connect(game.getPlayerPointer(i),SIGNAL(DataChanged()),this,SLOT(update()));
-//    }
+    for(int i=0; i<numberOfPLayers;i++){
+
+        connect(game.getPlayerPointer(i),SIGNAL(DataChanged()),this,SLOT(update()));
+    }
     ui->bMove->setEnabled(true);
 }
 
@@ -51,6 +50,11 @@ void MainWindow::paintEvent(QPaintEvent *e)
     QPainter painter(this);
     board->drawCards(&painter,this->size());
     board->drawPlayers(&painter,this->size());
+    ui->lTura->setText( "Tura gracza :"+(game.getCurrentPlayer()->getColor().name()));
+    ui->lCash1->setText("Pieniadze gracza :" + QString::number(game.getCurrentPlayer()->getCash()));
+
+
+
 }
 
 
@@ -71,7 +75,7 @@ void MainWindow::on_bMove_clicked()
     else ui->bBuy->setEnabled(false);
 
 
-    ui->lCash1->setText("Pieniadze gracza :" + QString::number(game.getCurrentPlayer()->getCash()));
+
 
 }
 
@@ -81,7 +85,7 @@ void MainWindow::on_bEnd_clicked()
 
     ui->bMove->setEnabled(true);
     ui->bEnd->setEnabled(false);
-    ui->lTura->setText( "Tura gracza :"+(game.getCurrentPlayer()->getColor().name()));
+
 
 }
 
@@ -89,7 +93,7 @@ void MainWindow::on_bBuy_clicked()
 {
 
     game.BuyProperty();
-    ui->lCash1->setText("Pieniadze gracza :" + QString::number(game.getCurrentPlayer()->getCash()));
+
 
     ui->bBuy->setEnabled(false);
 }

@@ -14,7 +14,7 @@ Game::Game(int _numberOfPlayers)
     {
         Player* player = new Player();
 
-        player->setCash(1000);
+        player->setCash(4000);
         player->setPosition(board.getStartCard());
         playerPointers.push_back(player);
     }
@@ -22,52 +22,53 @@ Game::Game(int _numberOfPlayers)
     {
     case 2:
         playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::green);
+        playerPointers[1]->setColor(Qt::darkGreen);
         break;
 
     case 3:
         playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::green);
-        playerPointers[2]->setColor(Qt::red);
+        playerPointers[1]->setColor(Qt::darkGreen);
+        playerPointers[2]->setColor(Qt::darkRed);
         break;
 
 
     case 4:
         playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::green);
-        playerPointers[2]->setColor(Qt::red);
+        playerPointers[1]->setColor(Qt::darkGreen);
+        playerPointers[2]->setColor(Qt::darkRed);
         playerPointers[3]->setColor(Qt::yellow);
         break;
     case 5:
         playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::green);
-        playerPointers[2]->setColor(Qt::red);
-        playerPointers[3]->setColor(Qt::yellow);
+        playerPointers[1]->setColor(Qt::darkGreen);
+        playerPointers[2]->setColor(Qt::darkRed);
+        playerPointers[3]->setColor(Qt::darkYellow);
         playerPointers[4]->setColor(Qt::white);
     case 6:
         playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::green);
-        playerPointers[2]->setColor(Qt::red);
-        playerPointers[3]->setColor(Qt::yellow);
+        playerPointers[1]->setColor(Qt::darkGreen);
+        playerPointers[2]->setColor(Qt::darkRed);
+        playerPointers[3]->setColor(Qt::darkYellow);
         playerPointers[4]->setColor(Qt::white);
         playerPointers[5]->setColor(Qt::black);
     case 7:
-        playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::green);
-        playerPointers[2]->setColor(Qt::red);
-        playerPointers[3]->setColor(Qt::yellow);
+        playerPointers[0]->setColor(Qt::darkBlue);
+        playerPointers[1]->setColor(Qt::darkGreen);
+        playerPointers[2]->setColor(Qt::darkRed);
+        playerPointers[3]->setColor(Qt::darkYellow);
         playerPointers[4]->setColor(Qt::white);
         playerPointers[5]->setColor(Qt::black);
         playerPointers[6]->setColor(Qt::gray);
+        break;
     case 8:
-        playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::green);
-        playerPointers[2]->setColor(Qt::red);
-        playerPointers[3]->setColor(Qt::yellow);
+        playerPointers[0]->setColor(Qt::darkBlue);
+        playerPointers[1]->setColor(Qt::darkGreen);
+        playerPointers[2]->setColor(Qt::darkRed);
+        playerPointers[3]->setColor(Qt::darkYellow);
         playerPointers[4]->setColor(Qt::white);
         playerPointers[5]->setColor(Qt::black);
         playerPointers[6]->setColor(Qt::gray);
-        playerPointers[7]->setColor(Qt::darkYellow);
+        playerPointers[7]->setColor(Qt::darkCyan);
 
 
         break;
@@ -86,7 +87,6 @@ void Game::MovePlayer()
 
     // Let's check whether the card is taken or not.
     Player* owner = getCardOwner(newPosition);
-
     if (owner ==  NULL) {
         // We can buy it
     } else if (owner == currentPlayer) {
@@ -95,6 +95,21 @@ void Game::MovePlayer()
         // Sadly we need to pay rent
         int payment = newPosition->calculatePayment();
         transferMoney(currentPlayer, owner, payment);
+    }
+
+
+    Card::CardType tempType= newPosition->getType();
+    if(tempType==Card::Jail)
+    {
+        //players goes to jail, will be done soon
+    }
+    else if(tempType==Card::Tax)
+    {
+        payBank(currentPlayer,200);
+    }
+    else if(tempType==Card::Bonus)
+    {
+        receiveFromBank(currentPlayer,200);
     }
 }
 
@@ -110,6 +125,7 @@ void Game::EndPlayerTurn()
 void Game::BuyProperty()
 {
     Card* playerPosition = currentPlayer->getPosition();
+    playerPosition->setBuyable(false);
     int price = playerPosition->getPrice();
     currentPlayer->addCard(playerPosition);
     payBank(currentPlayer, price);
@@ -142,6 +158,7 @@ Game::~Game()
 
 int Game::ThrowDice()
 {
+    srand( time( NULL ) );
     int throwResult = rand() % DiceMaxNumber +1;
     emit newDiceThrow( throwResult);
     return throwResult;

@@ -20,7 +20,7 @@ Card *CardUI::getCard()
 
 
 
-void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card)
+void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card, QColor color)
 {
 
     QFont font=painter->font() ;
@@ -35,11 +35,11 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card)
         QRect uprec(x+(w/5),y+(h/9),(w/5)*3,h/6);
         QBrush fillbrush;
         QBrush whitebrush;
-        whitebrush.setColor(Qt::white);
+        whitebrush.setColor(card->getColor());
         whitebrush.setStyle(Qt::SolidPattern);
         painter->fillRect(rec,whitebrush);
 
-        fillbrush.setColor(card->getColor());
+        fillbrush.setColor(color);
         fillbrush.setStyle(Qt::SolidPattern);
         QPen framepen(Qt::black);
         framepen.setWidth(4);
@@ -86,7 +86,7 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card)
         font.setPointSize ( 15);
         painter->setFont(font);
         QBrush whitebrush;
-        whitebrush.setColor(Qt::green);
+        whitebrush.setColor(Qt::darkGreen);
         whitebrush.setStyle(Qt::SolidPattern);
         painter->fillRect(rec,whitebrush);
         QPen framepen(Qt::black);
@@ -105,7 +105,7 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card)
         fillbrush.setColor(Qt::red);
         font.setPointSize ( 15);
         QBrush whitebrush;
-        whitebrush.setColor(Qt::yellow);
+        whitebrush.setColor(Qt::darkYellow);
         whitebrush.setStyle(Qt::SolidPattern);
         painter->fillRect(rec,whitebrush);
         painter->setFont(font);
@@ -124,7 +124,7 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card)
         fillbrush.setColor(Qt::red);
         font.setPointSize ( 15);
         QBrush whitebrush;
-        whitebrush.setColor(Qt::blue);
+        whitebrush.setColor(Qt::magenta);
         whitebrush.setStyle(Qt::SolidPattern);
         painter->fillRect(rec,whitebrush);
         painter->setFont(font);

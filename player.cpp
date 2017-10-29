@@ -51,6 +51,7 @@ bool Player::ownsCard(Card *card)
 void Player::addCard(Card *card)
 {
     ownedCards.push_back(card);
+    emit DataChanged();
 }
 
 
