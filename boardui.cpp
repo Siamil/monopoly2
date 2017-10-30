@@ -10,6 +10,7 @@ void BoardUI::drawCards(QPainter* painter,QSize size)
     {
         Card* tempCard = cardsUI[i]->getCard();
         QColor color;
+        int houses= tempCard->getHouses();
         for(int j=0; j< gamePtr->getNumberOfPlayers(); j++)
         {
             Player* tempPlayer = gamePtr -> getPlayerPointer(j);
@@ -21,11 +22,11 @@ void BoardUI::drawCards(QPainter* painter,QSize size)
             else color=Qt::white;
         }
 
-        if(i<(NumOfCards/4)) cardsUI[i]->draw(painter,xspace+(i*x),yspace,x,y,tempCard,color);
-        else if (i<(NumOfCards/2))    cardsUI[i]->draw(painter,xspace+((NumOfCards/4)*x),yspace+((i-(NumOfCards/4))*y),x,y,tempCard,color);
+        if(i<(NumOfCards/4)) cardsUI[i]->draw(painter, xspace+(i*x), yspace,x, y, tempCard, color, houses);
+        else if (i<(NumOfCards/2))    cardsUI[i]->draw(painter, xspace+((NumOfCards/4)*x), yspace+((i-(NumOfCards/4))*y), x, y, tempCard, color, houses);
 
-        else if (i<(NumOfCards/4)*3) cardsUI[i]->draw(painter,xspace+((NumOfCards/4)*x)-((i-(NumOfCards/2))*x),yspace+((NumOfCards/4)*y),x,y,tempCard,color);
-        else if (i<NumOfCards) cardsUI[i]->draw(painter,xspace,(yspace+((NumOfCards/4)*y))-((i-(NumOfCards/4)*3)*y),x,y,tempCard,color);
+        else if (i<(NumOfCards/4)*3) cardsUI[i]->draw(painter, xspace+((NumOfCards/4)*x)-((i-(NumOfCards/2))*x), yspace+((NumOfCards/4)*y), x, y, tempCard,color, houses);
+        else if (i<NumOfCards) cardsUI[i]->draw(painter, xspace, (yspace+((NumOfCards/4)*y))-((i-(NumOfCards/4)*3)*y), x, y, tempCard, color, houses);
     }
 }
 
@@ -38,13 +39,15 @@ void BoardUI::drawPlayers(QPainter *painter, QSize size)
         Player* tempPlayer = gamePtr -> getPlayerPointer(i);
         int index = tempPlayer -> getPosition() -> getNrCard();
 
-        if(index<(NumOfCards/4)) playersUI[i]->draw(painter,xspace+(index*x),yspace,x,y,tempPlayer);
-        else if (index<(NumOfCards/2))    playersUI[i]->draw(painter,xspace+((NumOfCards/4)*x),yspace+((index-(NumOfCards/4))*y),x,y,tempPlayer);
+        if(index<(NumOfCards/4)) playersUI[i]->draw(painter, xspace+(index*x), yspace, x, y, tempPlayer);
+        else if (index<(NumOfCards/2))    playersUI[i]->draw(painter, xspace+((NumOfCards/4)*x), yspace+((index-(NumOfCards/4))*y), x, y, tempPlayer);
 
-        else if (index<(NumOfCards/4)*3) playersUI[i]->draw(painter,xspace+((NumOfCards/4)*x)-((index-(NumOfCards/2))*x),yspace+((NumOfCards/4)*y),x,y,tempPlayer);
-        else if (index<NumOfCards) playersUI[i]->draw(painter,xspace,(yspace+((NumOfCards/4)*y))-((index-(NumOfCards/4)*3)*y),x,y,tempPlayer);
+        else if (index<(NumOfCards/4)*3) playersUI[i]->draw(painter, xspace+((NumOfCards/4)*x)-((index-(NumOfCards/2))*x), yspace+((NumOfCards/4)*y), x, y, tempPlayer);
+        else if (index<NumOfCards) playersUI[i]->draw(painter, xspace, (yspace+((NumOfCards/4)*y))-((index-(NumOfCards/4)*3)*y), x, y, tempPlayer);
     }
 }
+
+
 
 BoardUI::BoardUI(Board *ptrToBoard, Game *ptrToGame)
 {

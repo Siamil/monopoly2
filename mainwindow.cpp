@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent) :
     for(int i=0; i<numberOfPLayers;i++){
 
         connect(game.getPlayerPointer(i),SIGNAL(DataChanged()),this,SLOT(update()));
+
     }
     ui->bMove->setEnabled(true);
 }
@@ -64,13 +65,13 @@ void MainWindow::on_bMove_clicked()
 
     ui->bEnd->setEnabled(true);
     ui->bMove->setEnabled(false);
-    if(game.getCurrentPlayer()->getPosition()->getBuyable()==true&& game.getCurrentPlayer()->getPosition()->getType() == Card::Property)
+    if(game.CanBuyProperty())
     {
         ui->bBuy->setEnabled(true);
     }
     else ui->bBuy->setEnabled(false);
-
-
+    if(game.CanBuyHouse()) ui->bBuyHouse->setEnabled(true);
+    else ui->bBuyHouse->setEnabled(false);
 
 
 }
@@ -89,7 +90,16 @@ void MainWindow::on_bBuy_clicked()
 {
 
     game.BuyProperty();
-
+    if(game.CanBuyHouse()) ui->bBuyHouse->setEnabled(true);
+    else ui->bBuyHouse->setEnabled(false);
 
     ui->bBuy->setEnabled(false);
+}
+
+void MainWindow::on_bBuyHouse_clicked()
+{
+    game.BuyHouse();
+    if(game.CanBuyHouse()) ui->bBuyHouse->setEnabled(true);
+        else ui->bBuyHouse->setEnabled(false);
+
 }

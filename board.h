@@ -12,7 +12,7 @@ public:
     Card* getStartCard();
     Board();
     ~Board();
-
+    int getNumberOfCards();
     Card* getCard(int index);
     ;
 

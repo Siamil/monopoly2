@@ -14,65 +14,18 @@ Game::Game(int _numberOfPlayers)
     {
         Player* player = new Player();
 
-        player->setCash(4000);
+        player->setCash(1000);
         player->setPosition(board.getStartCard());
         playerPointers.push_back(player);
     }
-    switch( numberOfPlayers )
-    {
-    case 2:
-        playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::darkGreen);
-        break;
-
-    case 3:
-        playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::darkGreen);
-        playerPointers[2]->setColor(Qt::darkRed);
-        break;
-
-
-    case 4:
-        playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::darkGreen);
-        playerPointers[2]->setColor(Qt::darkRed);
-        playerPointers[3]->setColor(Qt::yellow);
-        break;
-    case 5:
-        playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::darkGreen);
-        playerPointers[2]->setColor(Qt::darkRed);
-        playerPointers[3]->setColor(Qt::darkYellow);
-        playerPointers[4]->setColor(Qt::white);
-    case 6:
-        playerPointers[0]->setColor(Qt::blue);
-        playerPointers[1]->setColor(Qt::darkGreen);
-        playerPointers[2]->setColor(Qt::darkRed);
-        playerPointers[3]->setColor(Qt::darkYellow);
-        playerPointers[4]->setColor(Qt::white);
-        playerPointers[5]->setColor(Qt::black);
-    case 7:
-        playerPointers[0]->setColor(Qt::darkBlue);
-        playerPointers[1]->setColor(Qt::darkGreen);
-        playerPointers[2]->setColor(Qt::darkRed);
-        playerPointers[3]->setColor(Qt::darkYellow);
-        playerPointers[4]->setColor(Qt::white);
-        playerPointers[5]->setColor(Qt::black);
-        playerPointers[6]->setColor(Qt::gray);
-        break;
-    case 8:
-        playerPointers[0]->setColor(Qt::darkBlue);
-        playerPointers[1]->setColor(Qt::darkGreen);
-        playerPointers[2]->setColor(Qt::darkRed);
-        playerPointers[3]->setColor(Qt::darkYellow);
-        playerPointers[4]->setColor(Qt::white);
-        playerPointers[5]->setColor(Qt::black);
-        playerPointers[6]->setColor(Qt::gray);
-        playerPointers[7]->setColor(Qt::darkCyan);
-
-
-        break;
-    }
+    if(numberOfPlayers>=1) playerPointers[0]->setColor(Qt::blue);
+    if(numberOfPlayers>=2) playerPointers[1]->setColor(Qt::darkGreen);
+    if(numberOfPlayers>=3) playerPointers[2]->setColor(Qt::darkRed);
+    if(numberOfPlayers>=4) playerPointers[3]->setColor(Qt::yellow);
+    if(numberOfPlayers>=5) playerPointers[4]->setColor(Qt::white);
+    if(numberOfPlayers>=6) playerPointers[5]->setColor(Qt::black);
+    if(numberOfPlayers>=7) playerPointers[6]->setColor(Qt::gray);
+    if(numberOfPlayers>=8) playerPointers[7]->setColor(Qt::darkCyan);
 
     currentPlayer = playerPointers.first();
 }
@@ -87,12 +40,8 @@ void Game::MovePlayer()
 
     // Let's check whether the card is taken or not.
     Player* owner = getCardOwner(newPosition);
-    if (owner ==  NULL) {
-        // We can buy it
-    } else if (owner == currentPlayer) {
-        // We can build on it
-    } else {
-        // Sadly we need to pay rent
+    if (!(owner ==  NULL || owner == currentPlayer)) {
+
         int payment = newPosition->calculatePayment();
         transferMoney(currentPlayer, owner, payment);
     }
@@ -111,6 +60,7 @@ void Game::MovePlayer()
     {
         receiveFromBank(currentPlayer,200);
     }
+    isPlayerDone();
 }
 
 void Game::EndPlayerTurn()
@@ -131,6 +81,44 @@ void Game::BuyProperty()
     payBank(currentPlayer, price);
 }
 
+void Game::BuyHouse()
+{
+    Card* playerPosition = currentPlayer->getPosition();
+    int price = (playerPosition->getPrice())/2;
+    int houses= playerPosition->getHouses();
+    playerPosition->setHouses(houses+1);
+    payBank(currentPlayer, price);
+}
+
+bool Game::CanBuyHouse()
+{
+
+    Card* position = currentPlayer->getPosition();
+    if(position->getHouses()>=4 || currentPlayer->getCash()<((position->getPrice())/2) ) return false;
+    for (int i=0; i <board.getNumberOfCards(); i++)
+    {
+        if (board.getCard(i)->getColor()== position->getColor())
+        {
+    if(!(currentPlayer->ownsCard(board.getCard(i))))
+    {
+        return false;
+        }
+
+        }
+}
+    return true;
+}
+
+bool Game::CanBuyProperty()
+{
+    Card* position = currentPlayer->getPosition();
+    Card::CardType type = position->getType();
+    int price = position->getPrice();
+    int cash=currentPlayer->getCash();
+    if(currentPlayer->getPosition()->getBuyable()==true&& type == Card::Property && price<=cash ) return true;
+    else return false;
+}
+
 Player *Game::getCurrentPlayer()
 {
     return currentPlayer;
@@ -149,6 +137,23 @@ Board *Game::getBoardPtr()
 int Game::getNumberOfPlayers()
 {
     return numberOfPlayers;
+}
+
+void Game::setNumberOfPlayers(int numberofplayers)
+{
+    numberOfPlayers=numberofplayers;
+}
+
+void Game::isPlayerDone()
+{
+    if(currentPlayer->getCash()<=0)
+    {
+        setNumberOfPlayers(getNumberOfPlayers()-1);
+        playerPointers.remove(playerPointers.indexOf(currentPlayer));
+        delete currentPlayer;
+
+
+    }
 }
 
 Game::~Game()

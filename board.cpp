@@ -45,6 +45,11 @@ Board::~Board()
     }
 }
 
+int Board::getNumberOfCards()
+{
+    return NumberOfCards;
+}
+
 Card *Board::getCard(int index)
 {
     return cards.at(index);

@@ -57,5 +57,7 @@ void Player::addCard(Card *card)
 
 Player::~Player()
 {
+    for(int i=0; i<ownedCards.size();i++) ownedCards[i]->setBuyable(true);
+    ownedCards.clear();
 
 }

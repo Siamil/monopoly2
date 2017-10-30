@@ -23,6 +23,7 @@ private:
     bool buyable=true;
     QColor color;
     CardType type;
+    int houses=0;
 
 public:
 
@@ -46,6 +47,9 @@ public:
 
     void setType(CardType type);
     CardType getType();
+
+    void setHouses(int houses);
+    int getHouses();
 
     int calculatePayment();
 

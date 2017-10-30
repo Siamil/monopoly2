@@ -47,6 +47,8 @@ private slots:
 
     void on_bBuy_clicked();
 
+    void on_bBuyHouse_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

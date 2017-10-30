@@ -22,16 +22,22 @@ public:
     void MovePlayer();
     void EndPlayerTurn();
     void BuyProperty();
+    void BuyHouse();
+    bool CanBuyHouse();
+    bool CanBuyProperty();
     void Dice();
     Player *getCurrentPlayer();
     Player* getPlayerPointer(int index);
     Board* getBoardPtr();
     int getNumberOfPlayers();
+    void setNumberOfPlayers(int numberofplayers);
+    void isPlayerDone();
 
 
 
 
     ~Game();
+
 signals:
     void newDiceThrow(int);
 private:
