@@ -14,7 +14,7 @@ Player::Player()
 
 int Player::getCash()
 {
-return this->Cash;
+    return this->Cash;
 }
 Card *Player::getPosition()
 {
@@ -32,7 +32,7 @@ QColor Player::getColor()
 }
 void Player::setCash(int newAmount)
 {
-this->Cash=newAmount;
+    this->Cash=newAmount;
     emit DataChanged();
 }
 void Player::setPosition(Card *newPosition)

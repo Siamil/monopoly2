@@ -64,5 +64,5 @@ Card *Board::calculateNewPosition(Player *player, int throwResult)
 
     int indexInVector =cards.indexOf(tempCard);
     int nextIndex = (indexInVector + throwResult) % NumberOfCards;
-     return cards[nextIndex];
+    return cards[nextIndex];
 }

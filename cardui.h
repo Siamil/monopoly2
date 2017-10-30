@@ -21,8 +21,8 @@ public:
     void draw(QPainter *painter, int x, int y, int w, int h, Card *card, QColor color, int houses);
 
     ~CardUI();
- public slots:
-   void RefreshUI();
+public slots:
+    void RefreshUI();
 };
 
 #endif // CARDUI_H

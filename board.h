@@ -16,7 +16,7 @@ public:
     Card* getCard(int index);
     ;
 
-      Card* calculateNewPosition(Player* player, int throwResult);
+    Card* calculateNewPosition(Player* player, int throwResult);
 };
 
 #endif // BOARD_H

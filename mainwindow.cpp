@@ -19,19 +19,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
     board = new BoardUI(game.getBoardPtr(), &game);
     ;
-//    for(int i=0;i<16;i++)
-//    {
-//        board->cardsUI[i]->setParent(this);
+    //    for(int i=0;i<16;i++)
+    //    {
+    //        board->cardsUI[i]->setParent(this);
 
-//    }
+    //    }
     this->setUpdatesEnabled(true);
 
     ui->bMove->setEnabled(false);
     ui->bEnd->setEnabled(false);
 
-    for(int i=0; i<numberOfPLayers;i++){
+    for(int i=0; i<numberOfPLayers; i++){
 
-        connect(game.getPlayerPointer(i),SIGNAL(DataChanged()),this,SLOT(update()));
+        connect(game.getPlayerPointer(i), SIGNAL(DataChanged()), this, SLOT(update()));
 
     }
     ui->bMove->setEnabled(true);
@@ -45,9 +45,9 @@ MainWindow::~MainWindow()
 void MainWindow::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
-    board->drawCards(&painter,this->size());
-    board->drawPlayers(&painter,this->size());
-    ui->lTura->setText( "Tura gracza :"+(game.getCurrentPlayer()->getColor().name()));
+    board->drawCards(&painter, this->size());
+    board->drawPlayers(&painter, this->size());
+    ui->lTura->setText( "Tura gracza :" + (game.getCurrentPlayer()->getColor().name()));
     ui->lCash1->setText("Pieniadze gracza :" + QString::number(game.getCurrentPlayer()->getCash()));
 
 
@@ -100,6 +100,6 @@ void MainWindow::on_bBuyHouse_clicked()
 {
     game.BuyHouse();
     if(game.CanBuyHouse()) ui->bBuyHouse->setEnabled(true);
-        else ui->bBuyHouse->setEnabled(false);
+    else ui->bBuyHouse->setEnabled(false);
 
 }

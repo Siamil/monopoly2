@@ -31,7 +31,7 @@ public:
 
     ~Player();
 
-    signals:
+signals:
     void DataChanged();
 
 

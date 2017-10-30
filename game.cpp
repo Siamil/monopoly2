@@ -54,11 +54,11 @@ void Game::MovePlayer()
     }
     else if(tempType==Card::Tax)
     {
-        payBank(currentPlayer,200);
+        payBank(currentPlayer, 200);
     }
     else if(tempType==Card::Bonus)
     {
-        receiveFromBank(currentPlayer,200);
+        receiveFromBank(currentPlayer, 200);
     }
     isPlayerDone();
 }
@@ -85,8 +85,8 @@ void Game::BuyHouse()
 {
     Card* playerPosition = currentPlayer->getPosition();
     int price = (playerPosition->getPrice())/2;
-    int houses= playerPosition->getHouses();
-    playerPosition->setHouses(houses+1);
+    int houses = playerPosition->getHouses();
+    playerPosition->setHouses(houses + 1);
     payBank(currentPlayer, price);
 }
 
@@ -94,18 +94,18 @@ bool Game::CanBuyHouse()
 {
 
     Card* position = currentPlayer->getPosition();
-    if(position->getHouses()>=4 || currentPlayer->getCash()<((position->getPrice())/2) ) return false;
-    for (int i=0; i <board.getNumberOfCards(); i++)
+    if(position->getHouses()>=4 || currentPlayer->getCash() < ((position->getPrice())/2) ) return false;
+    for (int i = 0; i < board.getNumberOfCards(); i++)
     {
         if (board.getCard(i)->getColor()== position->getColor())
         {
-    if(!(currentPlayer->ownsCard(board.getCard(i))))
-    {
-        return false;
-        }
+            if(!(currentPlayer->ownsCard(board.getCard(i))))
+            {
+                return false;
+            }
 
         }
-}
+    }
     return true;
 }
 
@@ -114,8 +114,8 @@ bool Game::CanBuyProperty()
     Card* position = currentPlayer->getPosition();
     Card::CardType type = position->getType();
     int price = position->getPrice();
-    int cash=currentPlayer->getCash();
-    if(currentPlayer->getPosition()->getBuyable()==true&& type == Card::Property && price<=cash ) return true;
+    int cash = currentPlayer->getCash();
+    if(currentPlayer->getPosition()->getBuyable()==true && type == Card::Property && price <= cash ) return true;
     else return false;
 }
 
@@ -148,7 +148,7 @@ void Game::isPlayerDone()
 {
     if(currentPlayer->getCash()<=0)
     {
-        setNumberOfPlayers(getNumberOfPlayers()-1);
+        setNumberOfPlayers(getNumberOfPlayers() - 1);
         playerPointers.remove(playerPointers.indexOf(currentPlayer));
         delete currentPlayer;
 
@@ -164,7 +164,7 @@ Game::~Game()
 int Game::ThrowDice()
 {
     srand( time( NULL ) );
-    int throwResult = rand() % DiceMaxNumber +1;
+    int throwResult = rand() % DiceMaxNumber + 1;
     emit newDiceThrow( throwResult);
     return throwResult;
 

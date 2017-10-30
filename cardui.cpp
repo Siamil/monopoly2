@@ -30,14 +30,14 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card, QCo
     {
         font.setPointSize (8);
         painter->setFont(font);
-        for (int i=0; i<houses;i++)
+        for (int i = 0; i < houses; i++)
         {
-            QRect houserec(x+(w/5),y+(h/5)*4,(w/5),h/6);
+            QRect houserec(x+(w/5), y+(h/5)*4, (w/5), h/6);
 
         }
-        QRect rec(x,y,w,h);
-        QRect recprice(x+(w/5),y+(h/3),(w/5)*3,h/6);
-        QRect uprec(x+(w/5),y+(h/9),(w/5)*3,h/6);
+        QRect rec(x, y, w, h);
+        QRect recprice(x + (w/5), y+ (h/3), (w/5) * 3, h/6);
+        QRect uprec(x + (w/5), y + (h/9), (w/5) * 3, h/6);
         QBrush fillbrush;
         QBrush whitebrush;
         whitebrush.setColor(card->getColor());
@@ -52,23 +52,23 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card, QCo
         painter->drawRect(rec);
 
         painter->drawRect(uprec);
-        painter->fillRect(uprec,fillbrush);
+        painter->fillRect(uprec, fillbrush);
         painter->drawRect(recprice);
-        for (int i=0; i<houses;i++)
+        for (int i = 0; i < houses; i++)
         {
-            QRect houserec((x+(w/8))+(i*(w/4)),y+(h/5)*4,(w/7),h/6);
+            QRect houserec((x + (w/8)) + (i * (w/4)), y + (h/5) * 4, (w/7), h/6);
             painter->drawRect(houserec);
             painter->fillRect(houserec,fillbrush);
         }
         framepen.setColor(Qt::black);
         painter->setPen(framepen);
-        painter->drawText(recprice,Qt::AlignCenter,"Price:" + QString::number(card->getPrice())+"$");
+        painter->drawText(recprice,Qt::AlignCenter, "Price:" + QString::number(card->getPrice())+"$");
 
 
     }
     else if(card->getType()==Card:: Jail)
     {
-        QRect rec(x,y,w,h);
+        QRect rec(x, y, w, h);
         QBrush fillbrush;
         QBrush whitebrush;
         whitebrush.setColor(Qt::white);
@@ -84,7 +84,7 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card, QCo
         painter->setPen(framepen);
 
         painter->drawRect(rec);
-        painter->drawText(rec,Qt::AlignCenter,"JAIL");
+        painter->drawText(rec, Qt::AlignCenter, "JAIL");
 
 
 
@@ -105,33 +105,33 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card, QCo
         framepen.setWidth(4);
         painter->setPen(framepen);
         painter->drawRect(rec);
-        painter->drawText(rec,Qt::AlignCenter,"Pay Tax");
-        painter->drawText(rec,Qt::AlignBottom,"200$");
+        painter->drawText(rec,Qt::AlignCenter," Pay Tax");
+        painter->drawText(rec,Qt::AlignBottom, "200$");
 
 
     }
     else if(card->getType()==Card:: Bonus)
     {
-        QRect rec(x,y,w,h);
+        QRect rec(x, y, w, h);
         QBrush fillbrush;
         fillbrush.setColor(Qt::red);
         font.setPointSize ( 15);
         QBrush whitebrush;
         whitebrush.setColor(Qt::darkYellow);
         whitebrush.setStyle(Qt::SolidPattern);
-        painter->fillRect(rec,whitebrush);
+        painter->fillRect(rec, whitebrush);
         painter->setFont(font);
         QPen framepen(Qt::black);
         framepen.setWidth(4);
         painter->setPen(framepen);
         painter->drawRect(rec);
-        painter->drawText(rec,Qt::AlignCenter,"Bonus");
-        painter->drawText(rec,Qt::AlignBottom,"200$");
+        painter->drawText(rec,Qt::AlignCenter, "Bonus");
+        painter->drawText(rec,Qt::AlignBottom, "200$");
 
     }
     else if(card->getType()==Card::Start)
     {
-        QRect rec(x,y,w,h);
+        QRect rec(x , y, w, h);
         QBrush fillbrush;
         fillbrush.setColor(Qt::red);
         font.setPointSize ( 15);
@@ -144,8 +144,8 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card, QCo
         framepen.setWidth(4);
         painter->setPen(framepen);
         painter->drawRect(rec);
-        painter->drawText(rec,Qt::AlignCenter,"START");
-        painter->drawText(rec,Qt::AlignBottom,"HAVE FUN");
+        painter->drawText(rec,Qt::AlignCenter, "START");
+        painter->drawText(rec,Qt::AlignBottom, "HAVE FUN");
     }
 
 }

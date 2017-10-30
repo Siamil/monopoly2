@@ -19,12 +19,12 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-const int numberOfPLayers; // It needs to be prior Game game.
-                           // Because order here matters. Not one in initialization list of constructor
-BoardUI *board;
-Game game;
-QHBoxLayout *Hlayout;
-QVBoxLayout *Vlayout ;
+    const int numberOfPLayers; // It needs to be prior Game game.
+    // Because order here matters. Not one in initialization list of constructor
+    BoardUI *board;
+    Game game;
+    QHBoxLayout *Hlayout;
+    QVBoxLayout *Vlayout ;
 
 
 
@@ -35,7 +35,7 @@ protected:
     void paintEvent(QPaintEvent *e);
 
 private slots:
-//    int on_bDice_clicked();
+    //    int on_bDice_clicked();
 
 
 
