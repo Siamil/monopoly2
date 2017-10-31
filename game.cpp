@@ -14,7 +14,7 @@ Game::Game(int _numberOfPlayers)
     {
         Player* player = new Player();
 
-        player->setCash(1000);
+        player->setCash(playerCash);
         player->setPosition(board.getStartCard());
         playerPointers.push_back(player);
     }
@@ -44,21 +44,24 @@ void Game::MovePlayer()
 
         int payment = newPosition->calculatePayment();
         transferMoney(currentPlayer, owner, payment);
+        emit statement("Gracz "+ whosTurn() + " zaplacil za nocleg!");
     }
 
 
     Card::CardType tempType= newPosition->getType();
     if(tempType==Card::Jail)
     {
-        //players goes to jail, will be done soon
+        currentPlayer->setJail(true);
     }
     else if(tempType==Card::Tax)
     {
         payBank(currentPlayer, 200);
+        emit statement("Gracz "+ whosTurn() + " zaplacil podatek!");
     }
     else if(tempType==Card::Bonus)
     {
         receiveFromBank(currentPlayer, 200);
+        emit statement("Gracz "+ whosTurn() + " otrzymal pieniadze!");
     }
     isPlayerDone();
 }
@@ -67,8 +70,9 @@ void Game::EndPlayerTurn()
 {
     int currentPlayerIndex = playerPointers.indexOf(currentPlayer);
     int nextOne = (currentPlayerIndex + 1) % numberOfPlayers;
-
+    emit statement("Gracz "+ whosTurn() + " zakonczyl ture!");
     currentPlayer = playerPointers[nextOne];
+
 }
 
 
@@ -79,6 +83,7 @@ void Game::BuyProperty()
     int price = playerPosition->getPrice();
     currentPlayer->addCard(playerPosition);
     payBank(currentPlayer, price);
+    emit statement("Gracz "+ whosTurn() + " kupil pole!");
 }
 
 void Game::BuyHouse()
@@ -88,6 +93,7 @@ void Game::BuyHouse()
     int houses = playerPosition->getHouses();
     playerPosition->setHouses(houses + 1);
     payBank(currentPlayer, price);
+    emit statement("Gracz "+ whosTurn() + " kupil domek!");
 }
 
 bool Game::CanBuyHouse()
@@ -117,6 +123,19 @@ bool Game::CanBuyProperty()
     int cash = currentPlayer->getCash();
     if(currentPlayer->getPosition()->getBuyable()==true && type == Card::Property && price <= cash ) return true;
     else return false;
+}
+
+QString Game::whosTurn()
+{
+    QColor color = currentPlayer->getColor();
+    if(color==Qt::blue) return "blue";
+    if(color==Qt::darkGreen) return "darkGreen";
+    if(color==Qt::darkRed) return "darkRed";
+    if(color==Qt::yellow) return "yellow";
+    if(color==Qt::white) return "white";
+    if(color==Qt::black) return "black";
+    if(color==Qt::gray) return "gray";
+    if(color==Qt::darkCyan) return "darkCyan";
 }
 
 Player *Game::getCurrentPlayer()
@@ -155,6 +174,8 @@ void Game::isPlayerDone()
 
     }
 }
+
+
 
 Game::~Game()
 {

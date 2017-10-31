@@ -11,7 +11,7 @@ void BoardUI::drawCards(QPainter* painter,QSize size)
         Card* tempCard = cardsUI[i]->getCard();
         QColor color;
         int houses= tempCard->getHouses();
-        for(int j=0; j< gamePtr->getNumberOfPlayers(); j++)
+        for(int j=0; j< gamePtr -> getNumberOfPlayers(); j++)
         {
             Player* tempPlayer = gamePtr -> getPlayerPointer(j);
             if(tempPlayer->ownsCard(tempCard))
@@ -22,10 +22,10 @@ void BoardUI::drawCards(QPainter* painter,QSize size)
             else color=Qt::white;
         }
 
-        if(i<(NumOfCards/4)) cardsUI[i]->draw(painter, xspace+(i*x), yspace,x, y, tempCard, color, houses);
-        else if (i<(NumOfCards/2))    cardsUI[i]->draw(painter, xspace+((NumOfCards/4)*x), yspace+((i-(NumOfCards/4))*y), x, y, tempCard, color, houses);
+         if(i<(NumOfCards/4)) cardsUI[i]->draw(painter, xspace+(i*x), yspace,x, y, tempCard, color, houses);
+         else if (i<(NumOfCards/2))    cardsUI[i]->draw(painter, xspace+((NumOfCards/4)*x), yspace+((i-(NumOfCards/4))*y), x, y, tempCard, color, houses);
 
-        else if (i<(NumOfCards/4)*3) cardsUI[i]->draw(painter, xspace+((NumOfCards/4)*x)-((i-(NumOfCards/2))*x), yspace+((NumOfCards/4)*y), x, y, tempCard,color, houses);
+        else if (i<(NumOfCards/4)*3) cardsUI[i]->draw(painter, xspace+((NumOfCards/4)*x)-((i-(NumOfCards/2))*x), yspace+((NumOfCards/4)*y), x, y, tempCard, color, houses);
         else if (i<NumOfCards) cardsUI[i]->draw(painter, xspace, (yspace+((NumOfCards/4)*y))-((i-(NumOfCards/4)*3)*y), x, y, tempCard, color, houses);
     }
 }
@@ -55,17 +55,14 @@ BoardUI::BoardUI(Board *ptrToBoard, Game *ptrToGame)
     gamePtr = ptrToGame;
 
 
-    for (int i = 0; i< 16; i++)
+    for (int i = 0; i< NumOfCards; i++)
     {
         CardUI* card = new CardUI();
+        card->setCard(boardPtr->getCard(i));
         cardsUI.push_back(card);
 
     }
-    for (int i = 0; i< 16; i++){
 
-        cardsUI[i]->setCard(boardPtr->getCard(i));
-
-    }
     for (int i=0; i<gamePtr->getNumberOfPlayers();++i)
     {
         PlayerUI* playerUI = new PlayerUI();

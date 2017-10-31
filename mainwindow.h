@@ -9,6 +9,7 @@
 #include "boardui.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QString>
 
 
 namespace Ui {
@@ -36,6 +37,8 @@ protected:
 
 private slots:
     //    int on_bDice_clicked();
+    void diceThrown(int dice);
+    void setStatement(QString statement);
 
 
 

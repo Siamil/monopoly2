@@ -19,12 +19,12 @@ public:
     QVector<PlayerUI*> playersUI;
     void drawCards(QPainter *painter, QSize size);
     void drawPlayers(QPainter *painter, QSize size);
-    int NumOfCards=16;
+    int NumOfCards=28;
     BoardUI(Board* ptrToBoard, Game *ptrToGame);
     const int xspace=10;
     const int yspace=50;
-    const int xfactor=7;
-    const int yfactor=6;
+    const int xfactor=11;
+    const int yfactor=9;
 
     ~BoardUI();
 };

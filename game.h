@@ -2,15 +2,17 @@
 #define GAME_H
 #include "board.h"
 #include "time.h"
+#include <QObject>
 
 
-class Game : QObject
+class Game : public QObject
 {
     Q_OBJECT
     Board board;
     QVector<Player*> playerPointers;
     Player* currentPlayer;
     int numberOfPlayers=4;
+    int playerCash=3000;
 
     const int DiceMaxNumber = 6;
 
@@ -26,6 +28,7 @@ public:
     bool CanBuyHouse();
     bool CanBuyProperty();
     void Dice();
+    QString whosTurn();
     Player *getCurrentPlayer();
     Player* getPlayerPointer(int index);
     Board* getBoardPtr();
@@ -36,10 +39,12 @@ public:
 
 
 
+
     ~Game();
 
 signals:
     void newDiceThrow(int);
+    void statement(QString);
 private:
     int ThrowDice();
     Player* getCardOwner(Card* card);

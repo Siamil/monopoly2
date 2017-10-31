@@ -74,7 +74,6 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card, QCo
         whitebrush.setColor(Qt::white);
         whitebrush.setStyle(Qt::SolidPattern);
         painter->fillRect(rec,whitebrush);
-
         font.setPointSize ( 18);
         painter->setFont(font);
         fillbrush.setColor(Qt::blue);
@@ -82,7 +81,6 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card, QCo
         QPen framepen(Qt::black);
         framepen.setWidth(4);
         painter->setPen(framepen);
-
         painter->drawRect(rec);
         painter->drawText(rec, Qt::AlignCenter, "JAIL");
 

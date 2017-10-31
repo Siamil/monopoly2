@@ -34,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
         connect(game.getPlayerPointer(i), SIGNAL(DataChanged()), this, SLOT(update()));
 
     }
+    connect(&game, SIGNAL(newDiceThrow(int)), this, SLOT(diceThrown(int)));
+    connect(&game, SIGNAL(statement(QString)), this, SLOT(setStatement(QString)));
     ui->bMove->setEnabled(true);
 }
 
@@ -47,11 +49,22 @@ void MainWindow::paintEvent(QPaintEvent *e)
     QPainter painter(this);
     board->drawCards(&painter, this->size());
     board->drawPlayers(&painter, this->size());
-    ui->lTura->setText( "Tura gracza :" + (game.getCurrentPlayer()->getColor().name()));
+    ui->lTura->setText( "Tura gracza :" + game.whosTurn());
     ui->lCash1->setText("Pieniadze gracza :" + QString::number(game.getCurrentPlayer()->getCash()));
 
 
 
+
+}
+
+void MainWindow::diceThrown(int dice)
+{
+    ui->lDice->setText("Wylosowales: " + QString::number(dice));
+}
+
+void MainWindow::setStatement(QString statement)
+{
+    ui->lStatement->setText(statement);
 }
 
 
@@ -60,9 +73,6 @@ void MainWindow::on_bMove_clicked()
 {
 
     game.MovePlayer();
-    //this->update();
-
-
     ui->bEnd->setEnabled(true);
     ui->bMove->setEnabled(false);
     if(game.CanBuyProperty())
@@ -79,10 +89,18 @@ void MainWindow::on_bMove_clicked()
 void MainWindow::on_bEnd_clicked()
 {
     game.EndPlayerTurn();
+    ui->bBuy->setEnabled(false);
+    if(game.getCurrentPlayer()->getJail())
+    {
+        ui->bMove->setEnabled(false);
+        ui->bEnd->setEnabled(true);
+        game.getCurrentPlayer()->setJail(false);
+    }
 
+    else{
     ui->bMove->setEnabled(true);
     ui->bEnd->setEnabled(false);
-
+}
 
 }
 

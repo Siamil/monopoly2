@@ -30,6 +30,16 @@ QColor Player::getColor()
 {
     return color;
 }
+
+void Player::setJail(bool jail)
+{
+    this->jail=jail;
+}
+
+bool Player::getJail()
+{
+    return jail;
+}
 void Player::setCash(int newAmount)
 {
     this->Cash=newAmount;

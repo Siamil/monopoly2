@@ -49,7 +49,7 @@ int Card::calculatePayment()
     // TODO. Vary the payment based on number of houses/hotels.
     // For now just take 1/10. houses and hotels are gonna be implemented later
 
-    int payment = (price * (1+houses))/ 10;
+    int payment = (price * (1+houses))/ 5;
     return payment;
 }
 
