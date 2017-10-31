@@ -98,9 +98,9 @@ void MainWindow::on_bEnd_clicked()
     }
 
     else{
-    ui->bMove->setEnabled(true);
-    ui->bEnd->setEnabled(false);
-}
+        ui->bMove->setEnabled(true);
+        ui->bEnd->setEnabled(false);
+    }
 
 }
 

@@ -22,8 +22,8 @@ void BoardUI::drawCards(QPainter* painter,QSize size)
             else color=Qt::white;
         }
 
-         if(i<(NumOfCards/4)) cardsUI[i]->draw(painter, xspace+(i*x), yspace,x, y, tempCard, color, houses);
-         else if (i<(NumOfCards/2))    cardsUI[i]->draw(painter, xspace+((NumOfCards/4)*x), yspace+((i-(NumOfCards/4))*y), x, y, tempCard, color, houses);
+        if(i<(NumOfCards/4)) cardsUI[i]->draw(painter, xspace+(i*x), yspace,x, y, tempCard, color, houses);
+        else if (i<(NumOfCards/2))    cardsUI[i]->draw(painter, xspace+((NumOfCards/4)*x), yspace+((i-(NumOfCards/4))*y), x, y, tempCard, color, houses);
 
         else if (i<(NumOfCards/4)*3) cardsUI[i]->draw(painter, xspace+((NumOfCards/4)*x)-((i-(NumOfCards/2))*x), yspace+((NumOfCards/4)*y), x, y, tempCard, color, houses);
         else if (i<NumOfCards) cardsUI[i]->draw(painter, xspace, (yspace+((NumOfCards/4)*y))-((i-(NumOfCards/4)*3)*y), x, y, tempCard, color, houses);
