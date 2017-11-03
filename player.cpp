@@ -40,6 +40,16 @@ bool Player::getJail()
 {
     return jail;
 }
+
+void Player::setAuction(bool auction)
+{
+    this->auction=auction;
+}
+
+bool Player::getAuction()
+{
+    return auction;
+}
 void Player::setCash(int newAmount)
 {
     this->Cash=newAmount;

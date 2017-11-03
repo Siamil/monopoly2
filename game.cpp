@@ -100,7 +100,7 @@ bool Game::CanBuyHouse()
 {
 
     Card* position = currentPlayer->getPosition();
-    if(position->getHouses()>=4 || currentPlayer->getCash() < ((position->getPrice())/2) ) return false;
+    if(position->getHouses() >= 4 || currentPlayer->getCash() < ((position->getPrice())/2) ) return false;
     for (int i = 0; i < board.getNumberOfCards(); i++)
     {
         if (board.getCard(i)->getColor()== position->getColor())
@@ -121,10 +121,70 @@ bool Game::CanBuyProperty()
     Card::CardType type = position->getType();
     int price = position->getPrice();
     int cash = currentPlayer->getCash();
-    if(currentPlayer->getPosition()->getBuyable()==true && type == Card::Property && price <= cash ) return true;
+    if(currentPlayer->getPosition()->getBuyable() ==true && type == Card::Property && price <= cash ) return true;
     else return false;
 }
 
+void Game::Auction()
+{
+    tradeCard = currentPlayer->getPosition();
+    setAuctionPrice(tradeCard->getPrice());
+    for (int i=0; i< numberOfPlayers; i++)
+    {
+        playerPointers[i]->setAuction(true);
+    }
+
+}
+
+void Game::setAuctionPrice(int auctionprice)
+{
+    this->auctionPrice = auctionprice;
+    emit DataChanged();
+}
+
+int Game::getAuctionPrice()
+{
+    return auctionPrice;
+}
+
+void Game::EndAuction()
+{
+    int aucPlayers=0;
+    int index;
+    for (int i=0; i < numberOfPlayers; i++)
+    {
+        if(playerPointers[i]->getAuction() == true)
+        {
+            aucPlayers++;
+            index=i;
+        }
+    }
+    if(aucPlayers==1 ){
+        if(auctionPrice > tradeCard->getPrice())
+        {
+            tradeCard ->setBuyable(false);
+            int price = auctionPrice;
+            playerPointers[index]->addCard(tradeCard);
+            payBank(playerPointers[index], price);
+            for(int j=0; j < numberOfPlayers; j++)
+            {
+                if(playerPointers[j]->getPosition() == tradeCard)
+                    currentPlayer = playerPointers[j];
+            }
+            emit auctionEnd();
+        }
+        else EndPlayerTurn();
+    } else EndPlayerTurn();
+    if(aucPlayers == 0)
+    {
+        for(int j=0; j < numberOfPlayers; j++)
+        {
+            if(playerPointers[j]->getPosition() == tradeCard)
+                currentPlayer = playerPointers[j];
+        }
+        emit auctionEnd();
+    }
+}
 QString Game::whosTurn()
 {
     QColor color = currentPlayer->getColor();

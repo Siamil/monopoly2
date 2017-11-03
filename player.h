@@ -15,6 +15,7 @@ class Player :
     QVector <Card*> ownedCards;
     QColor color;
     bool jail=false;
+    bool auction;
 
 public:
     Player();
@@ -24,6 +25,8 @@ public:
     QColor getColor();
     void setJail(bool jail);
     bool getJail();
+    void setAuction(bool auction);
+    bool getAuction();
 
     void setCash(int newAmount);
     void setPosition(Card* newPosition);

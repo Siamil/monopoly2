@@ -39,6 +39,8 @@ private slots:
     //    int on_bDice_clicked();
     void diceThrown(int dice);
     void setStatement(QString statement);
+    void auctionEnd();
+    void setTradePrice();
 
 
 
@@ -51,6 +53,20 @@ private slots:
     void on_bBuy_clicked();
 
     void on_bBuyHouse_clicked();
+
+    void on_bAuction_clicked();
+
+    void on_bAucplus_clicked();
+
+
+
+    void on_bBid_clicked();
+
+    void on_bAucstop_clicked();
+
+
+
+    void on_bAucplus50_clicked();
 
 private:
     Ui::MainWindow *ui;

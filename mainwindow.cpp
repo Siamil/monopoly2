@@ -36,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     connect(&game, SIGNAL(newDiceThrow(int)), this, SLOT(diceThrown(int)));
     connect(&game, SIGNAL(statement(QString)), this, SLOT(setStatement(QString)));
+    connect(&game, SIGNAL(DataChanged()), this, SLOT(setTradePrice()));
+    connect(&game, SIGNAL(auctionEnd()), this, SLOT(auctionEnd()));
     ui->bMove->setEnabled(true);
 }
 
@@ -50,7 +52,12 @@ void MainWindow::paintEvent(QPaintEvent *e)
     board->drawCards(&painter, this->size());
     board->drawPlayers(&painter, this->size());
     ui->lTura->setText( "Tura gracza :" + game.whosTurn());
-    ui->lCash1->setText("Pieniadze gracza :" + QString::number(game.getCurrentPlayer()->getCash()));
+
+    ui->verticalL->setContentsMargins((size().width()*4)/5, 0, 0, 0);
+    ui->lCash1->setText("Pieniadze gracza :" + QString::number(game.getPlayerPointer(0)->getCash()));
+    ui->lCash2->setText("Pieniadze gracza :" + QString::number(game.getPlayerPointer(1)->getCash()));
+    ui->lCash3->setText("Pieniadze gracza :" + QString::number(game.getPlayerPointer(2)->getCash()));
+    ui->lCash4->setText("Pieniadze gracza :" + QString::number(game.getPlayerPointer(3)->getCash()));
 
 
 
@@ -67,6 +74,23 @@ void MainWindow::setStatement(QString statement)
     ui->lStatement->setText(statement);
 }
 
+void MainWindow::auctionEnd()
+{
+    ui->bAucplus50->setEnabled(false);
+    ui->bAucplus50->setVisible(false);
+    ui->bAucplus->setEnabled(false);
+    ui->bAucplus->setVisible(false);
+    ui->bBid->setVisible(false);
+    ui->bAucstop->setVisible(false);
+    ui->bAucstop->setEnabled(false);
+    ui->bEnd->setEnabled(true);
+}
+
+void MainWindow::setTradePrice()
+{
+    ui->lAucprice->setText("Cena pola podczas licytacji: " +QString::number(game.getAuctionPrice()));
+}
+
 
 
 void MainWindow::on_bMove_clicked()
@@ -78,8 +102,12 @@ void MainWindow::on_bMove_clicked()
     if(game.CanBuyProperty())
     {
         ui->bBuy->setEnabled(true);
+        ui->bAuction->setEnabled(true);
     }
-    else ui->bBuy->setEnabled(false);
+    else{
+        ui->bBuy->setEnabled(false);
+        ui->bAuction->setEnabled(false);
+    }
     if(game.CanBuyHouse()) ui->bBuyHouse->setEnabled(true);
     else ui->bBuyHouse->setEnabled(false);
 
@@ -90,6 +118,7 @@ void MainWindow::on_bEnd_clicked()
 {
     game.EndPlayerTurn();
     ui->bBuy->setEnabled(false);
+    ui->bAuction->setEnabled(false);
     if(game.getCurrentPlayer()->getJail())
     {
         ui->bMove->setEnabled(false);
@@ -112,6 +141,7 @@ void MainWindow::on_bBuy_clicked()
     else ui->bBuyHouse->setEnabled(false);
 
     ui->bBuy->setEnabled(false);
+    ui->bAuction->setEnabled(false);
 }
 
 void MainWindow::on_bBuyHouse_clicked()
@@ -120,4 +150,70 @@ void MainWindow::on_bBuyHouse_clicked()
     if(game.CanBuyHouse()) ui->bBuyHouse->setEnabled(true);
     else ui->bBuyHouse->setEnabled(false);
 
+}
+
+void MainWindow::on_bAuction_clicked()
+{
+    game.Auction();
+    ui->bAuction->setEnabled(false);
+    ui->bBuy->setEnabled(false);
+    ui->bAucplus50->setEnabled(true);
+    ui->bAucplus50->setVisible(true);
+    ui->bAucplus->setEnabled(true);
+    ui->bAucplus->setVisible(true);
+    ui->bBid->setVisible(true);
+    ui->bAucstop->setVisible(true);
+    ui->bAucstop->setEnabled(true);
+    ui->bEnd->setEnabled(false);
+    ui->bBid->setEnabled(false);
+
+}
+
+void MainWindow::on_bAucplus_clicked()
+{
+
+    game.setAuctionPrice(game.getAuctionPrice()+10);
+
+    ui->bBid->setEnabled(true);
+    ui->bAucstop->setEnabled(false);
+}
+
+
+
+void MainWindow::on_bBid_clicked()
+{
+    ui->bBid->setEnabled(false);
+    ui->bAucstop->setEnabled(true);
+    game.EndPlayerTurn();
+
+    if(game.getCurrentPlayer()->getAuction()==false)
+    {
+        game.EndAuction();
+
+    }
+    else ui->bEnd->setEnabled(false);
+
+}
+
+void MainWindow::on_bAucstop_clicked()
+{
+    ui->bBid->setEnabled(false);
+    game.getCurrentPlayer()->setAuction(false);
+    if(game.getCurrentPlayer()->getAuction()==false)
+    {
+        game.EndAuction();
+
+    }
+    else ui->bEnd->setEnabled(false);
+
+}
+
+
+
+void MainWindow::on_bAucplus50_clicked()
+{
+    game.setAuctionPrice(game.getAuctionPrice() + 50);
+
+    ui->bBid->setEnabled(true);
+    ui->bAucstop->setEnabled(false);
 }

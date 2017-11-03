@@ -13,6 +13,8 @@ class Game : public QObject
     Player* currentPlayer;
     int numberOfPlayers=4;
     int playerCash=3000;
+    int auctionPrice;
+    Card *tradeCard;
 
     const int DiceMaxNumber = 6;
 
@@ -28,6 +30,10 @@ public:
     bool CanBuyHouse();
     bool CanBuyProperty();
     void Dice();
+    void Auction();
+    void setAuctionPrice(int auctionprice);
+    int getAuctionPrice();
+    void EndAuction();
     QString whosTurn();
     Player *getCurrentPlayer();
     Player* getPlayerPointer(int index);
@@ -45,6 +51,8 @@ public:
 signals:
     void newDiceThrow(int);
     void statement(QString);
+    void DataChanged();
+    void auctionEnd();
 private:
     int ThrowDice();
     Player* getCardOwner(Card* card);
