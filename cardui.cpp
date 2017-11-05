@@ -63,6 +63,7 @@ void CardUI::draw(QPainter *painter, int x, int y, int w, int h, Card *card, QCo
         framepen.setColor(Qt::black);
         painter->setPen(framepen);
         painter->drawText(recprice,Qt::AlignCenter, "Price:" + QString::number(card->getPrice())+"$");
+        painter->drawText(rec,Qt::AlignBottom, "#" + QString::number(card->getNrCard()));
 
 
     }

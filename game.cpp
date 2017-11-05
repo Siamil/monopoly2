@@ -125,6 +125,32 @@ bool Game::CanBuyProperty()
     else return false;
 }
 
+bool Game::CanTradeProperty(int nrcard)
+{
+    Card* tempCard = board.getCard(nrcard);
+    for (int i = 0; i < numberOfPlayers; i++)
+    {
+        if(playerPointers[i]->ownsCard(tempCard) && playerPointers[i] != currentPlayer)
+            return true;
+    }
+    return false;
+}
+
+void Game::TradeProperty(int nrcard)
+{
+    tradingPlayer = currentPlayer;
+    int index;
+    Card* tempCard = board.getCard(nrcard);
+
+    for (int i = 0; i < numberOfPlayers; i++)
+    {
+        if(playerPointers[i]->ownsCard(tempCard))
+            index = i;
+    }
+    currentPlayer = playerPointers[index];
+
+}
+
 void Game::Auction()
 {
     tradeCard = currentPlayer->getPosition();
@@ -133,7 +159,8 @@ void Game::Auction()
     {
         playerPointers[i]->setAuction(true);
     }
-
+    currentPlayer->setAuction(false);
+    EndPlayerTurn();
 }
 
 void Game::setAuctionPrice(int auctionprice)
@@ -184,6 +211,35 @@ void Game::EndAuction()
         }
         emit auctionEnd();
     }
+}
+
+void Game::EndTradeOK(Player *player, int price, int nrcard)
+{
+    Card* tempCard = board.getCard(nrcard);
+    transferMoney(player, currentPlayer, price);
+    currentPlayer->removeCard(tempCard);
+    player->addCard(tempCard);
+    currentPlayer = player;
+    emit tradeEnd();
+    emit statement("Doszlo do wymiany!");
+}
+
+void Game::EndTradeNo(Player *player)
+{
+    currentPlayer = player;
+    emit tradeEnd();
+    emit statement("Gracz sie nie zgodzil na wymiane!");
+}
+
+bool Game::HasPlayerCard(int nrCard)
+{
+    Card* tempCard = board.getCard(nrCard);
+    return currentPlayer->ownsCard(tempCard);
+}
+
+Player *Game::getTradingPlayer()
+{
+    return tradingPlayer;
 }
 QString Game::whosTurn()
 {

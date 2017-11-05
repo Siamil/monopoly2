@@ -68,6 +68,11 @@ bool Player::ownsCard(Card *card)
     return doIHaveIt;
 }
 
+void Player::removeCard(Card *card)
+{
+    ownedCards.remove(ownedCards.indexOf(card));
+}
+
 void Player::addCard(Card *card)
 {
     ownedCards.push_back(card);

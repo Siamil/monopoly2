@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&game, SIGNAL(statement(QString)), this, SLOT(setStatement(QString)));
     connect(&game, SIGNAL(DataChanged()), this, SLOT(setTradePrice()));
     connect(&game, SIGNAL(auctionEnd()), this, SLOT(auctionEnd()));
+    connect(&game, SIGNAL(tradeEnd()), this, SLOT(tradeEnd()));
     ui->bMove->setEnabled(true);
 }
 
@@ -71,6 +72,8 @@ void MainWindow::diceThrown(int dice)
 
 void MainWindow::setStatement(QString statement)
 {
+    QFont f( "Arial", 13, QFont::Bold);
+    ui->lStatement->setFont( f);
     ui->lStatement->setText(statement);
 }
 
@@ -89,6 +92,17 @@ void MainWindow::auctionEnd()
 void MainWindow::setTradePrice()
 {
     ui->lAucprice->setText("Cena pola podczas licytacji: " +QString::number(game.getAuctionPrice()));
+}
+
+void MainWindow::tradeEnd()
+{
+    ui->tNrCard->setEnabled(false);
+    ui->bTradeAuction->setEnabled(false);
+    ui->bTradeBuy->setEnabled(false);
+    ui->tCardPrice->setEnabled(false);
+    ui->bTradeNo->setEnabled(false);
+    ui->bTradeOk->setEnabled(false);
+    ui->lTradeAsk->setText("");
 }
 
 
@@ -199,12 +213,12 @@ void MainWindow::on_bAucstop_clicked()
 {
     ui->bBid->setEnabled(false);
     game.getCurrentPlayer()->setAuction(false);
-    if(game.getCurrentPlayer()->getAuction()==false)
-    {
-        game.EndAuction();
+    //    if(game.getCurrentPlayer()->getAuction()==false)
+    //    {
+    game.EndAuction();
 
-    }
-    else ui->bEnd->setEnabled(false);
+    //    }
+    //    else ui->bEnd->setEnabled(false);
 
 }
 
@@ -216,4 +230,67 @@ void MainWindow::on_bAucplus50_clicked()
 
     ui->bBid->setEnabled(true);
     ui->bAucstop->setEnabled(false);
+}
+
+
+void MainWindow::on_bTrade_clicked()
+{
+    ui->tNrCard->setEnabled(true);
+    ui->bTradeAuction->setEnabled(true);
+    ui->bTradeBuy->setEnabled(true);
+    ui->tCardPrice->setEnabled(true);
+}
+
+void MainWindow::on_bTradeAuction_clicked()
+{
+    if(game.HasPlayerCard(ui->tNrCard->value()))
+    {
+        game.Auction();
+
+        ui->bAuction->setEnabled(false);
+        ui->bBuy->setEnabled(false);
+        ui->bAucplus50->setEnabled(true);
+        ui->bAucplus50->setVisible(true);
+        ui->bAucplus->setEnabled(true);
+        ui->bAucplus->setVisible(true);
+        ui->bBid->setVisible(true);
+        ui->bAucstop->setVisible(true);
+        ui->bAucstop->setEnabled(true);
+        ui->bEnd->setEnabled(false);
+        ui->bBid->setEnabled(false);
+
+    }
+    else{
+        QMessageBox::information(this, "Nie mozna wystawic karty", "Nie posiadasz tej karty");
+    }
+}
+
+void MainWindow::on_bTradeBuy_clicked()
+{
+    int nrcard = ui->tNrCard->value();
+    if(game.CanTradeProperty(nrcard) && ui->tCardPrice->value() > 0)
+    {
+        int price = ui->tCardPrice->value();
+        game.TradeProperty(nrcard);
+        ui->lTradeAsk->setText("Czy chcesz sprzedac pole "+ QString::number(nrcard) + " za " + QString::number(price) + "?" );
+        ui->tCardPrice->setEnabled(false);
+        ui->tNrCard->setEnabled(false);
+        ui->bTradeNo->setEnabled(true);
+        ui->bTradeOk->setEnabled(true);
+    }
+    else QMessageBox::information(this, "Nie mozna kupic karty", "Nikt nie posiada tej karty lub nie wpisales ceny karty");
+}
+
+void MainWindow::on_bTradeOk_clicked()
+{
+    int nrcard = ui->tNrCard->value();
+    game.EndTradeOK(game.getTradingPlayer(), ui->tCardPrice->value(), nrcard);
+
+
+}
+
+void MainWindow::on_bTradeNo_clicked()
+{
+    game.EndTradeNo(game.getTradingPlayer());
+
 }

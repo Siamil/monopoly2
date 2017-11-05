@@ -32,7 +32,7 @@ public:
     void setPosition(Card* newPosition);
 
     bool ownsCard(Card* card);
-
+    void removeCard(Card *card);
     void addCard(Card* card);
 
     ~Player();

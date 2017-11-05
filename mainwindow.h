@@ -10,6 +10,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QString>
+#include <QMessageBox>
 
 
 namespace Ui {
@@ -41,6 +42,7 @@ private slots:
     void setStatement(QString statement);
     void auctionEnd();
     void setTradePrice();
+    void tradeEnd();
 
 
 
@@ -67,6 +69,18 @@ private slots:
 
 
     void on_bAucplus50_clicked();
+
+
+
+    void on_bTrade_clicked();
+
+    void on_bTradeAuction_clicked();
+
+    void on_bTradeBuy_clicked();
+
+    void on_bTradeOk_clicked();
+
+    void on_bTradeNo_clicked();
 
 private:
     Ui::MainWindow *ui;
