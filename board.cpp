@@ -5,9 +5,9 @@ Card *Board::getStartCard()
     return cards.first();
 }
 
-Board::Board()
+Board::Board(ConfigReader *configReader)
 {
-
+    NumberOfCards = configReader->getNumOfCards();
     for (int i = 0; i< NumberOfCards; i++)
     {
         Card* card = new Card();
@@ -16,7 +16,9 @@ Board::Board()
         card->setNrCard(i);
         cards.push_back(card);
     }
-    cards[0]->setType(Card::Start);
+    if (NumberOfCards >=16)
+    {
+        cards[0]->setType(Card::Start);
     cards[8]->setType(Card::Jail);
     cards[12]->setType(Card::Bonus);
     cards[1]->setColor(Qt::cyan);
@@ -32,6 +34,9 @@ Board::Board()
     cards[13]->setColor(Qt::gray);
     cards[14]->setColor(Qt::yellow);
     cards[15]->setColor(Qt::yellow);
+    }
+    if (NumberOfCards >= 28)
+    {
     cards[16]->setType(Card::Tax);
     cards[17]->setColor(Qt::yellow);
     cards[18]->setColor(Qt::darkGray);
@@ -44,7 +49,7 @@ Board::Board()
     cards[25]->setType(Card::Bonus);
     cards[26]->setColor(Qt::green);
     cards[27]->setType(Card::Tax);
-
+}
 
 }
 Board::~Board()

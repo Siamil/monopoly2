@@ -11,6 +11,10 @@
 #include <QVBoxLayout>
 #include <QString>
 #include <QMessageBox>
+#include <QVector>
+#include <QLabel>
+#include "configreader.h"
+
 
 
 namespace Ui {
@@ -21,12 +25,14 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-    const int numberOfPLayers; // It needs to be prior Game game.
+    int numberOfPLayers; // It needs to be prior Game game.
     // Because order here matters. Not one in initialization list of constructor
     BoardUI *board;
-    Game game;
+    Game *game;
     QHBoxLayout *Hlayout;
     QVBoxLayout *Vlayout ;
+    QVector <QLabel*> labels;
+    ConfigReader *configReader;
 
 
 
@@ -38,6 +44,8 @@ protected:
 
 private slots:
     //    int on_bDice_clicked();
+
+
     void diceThrown(int dice);
     void setStatement(QString statement);
     void auctionEnd();

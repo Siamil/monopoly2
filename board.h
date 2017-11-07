@@ -3,18 +3,19 @@
 #include "card.h"
 #include <QVector>
 #include <player.h>
+#include "configreader.h"
 
 class Board
 {
     QVector<Card*> cards;
-    const int NumberOfCards=28;
+    int NumberOfCards;
 public:    
     Card* getStartCard();
-    Board();
+    Board(ConfigReader *configReader);
     ~Board();
     int getNumberOfCards();
     Card* getCard(int index);
-    ;
+
 
     Card* calculateNewPosition(Player* player, int throwResult);
 };

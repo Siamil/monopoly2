@@ -1,14 +1,15 @@
 #include "boardui.h"
 
 
-void BoardUI::drawCards(QPainter* painter,QSize size)
+void BoardUI::drawCards(QPainter* painter, QSize size)
 {
 
-    int x=(size.width())/xfactor;
-    int y=(size.height())/yfactor;
-    for (int i = 0; i< NumOfCards; i++)
+    int x=(size.width()*0.65)/xfactor;
+    int y=(size.height()*0.75)/yfactor;
+
+    for (int i = 0; i < NumOfCards; i++)
     {
-        Card* tempCard = cardsUI[i]->getCard();
+        Card* tempCard = cardsUI[i] -> getCard();
         QColor color;
         int houses= tempCard->getHouses();
         for(int j=0; j< gamePtr -> getNumberOfPlayers(); j++)
@@ -32,8 +33,9 @@ void BoardUI::drawCards(QPainter* painter,QSize size)
 
 void BoardUI::drawPlayers(QPainter *painter, QSize size)
 {
-    int x=(size.width()) / xfactor;
-    int y=(size.height()) / yfactor;
+    int x=(size.width()*0.6) / xfactor;
+    int y=(size.height()*0.7) / yfactor;
+
     for (int i = 0; i < gamePtr ->getNumberOfPlayers(); i++)
     {
         Player* tempPlayer = gamePtr -> getPlayerPointer(i);
@@ -49,11 +51,17 @@ void BoardUI::drawPlayers(QPainter *painter, QSize size)
 
 
 
-BoardUI::BoardUI(Board *ptrToBoard, Game *ptrToGame)
+BoardUI::BoardUI(Board *ptrToBoard, Game *ptrToGame, ConfigReader *configReader)
 {
     boardPtr = ptrToBoard;
     gamePtr = ptrToGame;
 
+    yspace = configReader -> getYspace();
+    xspace = configReader -> getXspace();
+
+    NumOfCards = boardPtr-> getNumberOfCards();
+    xfactor = (NumOfCards/4);
+    yfactor = (NumOfCards/4);
 
     for (int i = 0; i< NumOfCards; i++)
     {

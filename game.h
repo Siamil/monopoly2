@@ -3,7 +3,11 @@
 #include "board.h"
 #include "time.h"
 #include <QObject>
-
+#include <qxmlstream.h>
+#include <QDebug>
+#include <QtCore>
+#include <QtXml/QtXml>
+#include "configreader.h"
 
 class Game : public QObject
 {
@@ -11,20 +15,21 @@ class Game : public QObject
     Board board;
     QVector<Player*> playerPointers;
     Player* currentPlayer;
-    int numberOfPlayers=4;
-    int playerCash=3000;
+    int numberOfPlayers;
+    int playerCash;
     int auctionPrice;
     Card *tradeCard;
     Player* tradingPlayer;
 
-    const int DiceMaxNumber = 6;
+    int DiceMaxNumber = 6;
 
 public:
 
-    Game();
-    Game(int _numberOfPlayers);
+    Game(ConfigReader *configReader);
 
+    void XMLParser();
     void MovePlayer();
+    void setPlayerCash(int playerCash);
     void EndPlayerTurn();
     void BuyProperty();
     void BuyHouse();

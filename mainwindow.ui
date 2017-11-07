@@ -27,7 +27,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="sizePolicy">
-    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
@@ -39,7 +39,7 @@
     <item>
      <layout class="QVBoxLayout" name="verticalL">
       <property name="leftMargin">
-       <number>700</number>
+       <number>0</number>
       </property>
       <item>
        <layout class="QGridLayout" name="gridLayout">
@@ -48,7 +48,7 @@
           <item>
            <widget class="QLabel" name="lCash3">
             <property name="text">
-             <string>TextLabel</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -63,9 +63,6 @@
             <property name="layoutDirection">
              <enum>Qt::RightToLeft</enum>
             </property>
-            <property name="text">
-             <string>TextLabel</string>
-            </property>
            </widget>
           </item>
          </layout>
@@ -75,16 +72,12 @@
           <item>
            <widget class="QLabel" name="lCash4">
             <property name="text">
-             <string>TextLabel</string>
+             <string/>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="lCash2">
-            <property name="text">
-             <string>TextLabel</string>
-            </property>
-           </widget>
+           <widget class="QLabel" name="lCash2"/>
           </item>
          </layout>
         </item>
@@ -175,16 +168,10 @@
       <item>
        <widget class="QLabel" name="lTura">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>50</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>16777215</height>
-         </size>
         </property>
         <property name="layoutDirection">
          <enum>Qt::RightToLeft</enum>
@@ -273,12 +260,6 @@
       </item>
       <item>
        <widget class="QLabel" name="lDice">
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>16777215</height>
-         </size>
-        </property>
         <property name="layoutDirection">
          <enum>Qt::RightToLeft</enum>
         </property>

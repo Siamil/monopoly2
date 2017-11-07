@@ -1,0 +1,15 @@
+<config>
+	<game>
+		<numOfPlayers>4</numOfPlayers>
+		<playerCash>3000</playerCash>
+		<diceMaxNumber>6</diceMaxNumber>
+	</game>
+	<board>
+		<numOfCards>28</numOfCards>
+	</board>
+	<boardUI>
+		<xspace>10</xspace>
+		<yspace>50</yspace>
+	</boardUI>
+</config>
+		

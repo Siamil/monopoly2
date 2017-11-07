@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/new">
-        <file>jpg.jpg</file>
+        <file>config.xml</file>
     </qresource>
 </RCC>

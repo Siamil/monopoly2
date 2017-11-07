@@ -1,15 +1,13 @@
 #include "game.h"
 #include "board.h"
 
-Game::Game()
+Game::Game(ConfigReader *configReader) :
+    board(configReader)
 {
 
-}
-
-Game::Game(int _numberOfPlayers)
-    : numberOfPlayers(_numberOfPlayers)
-{
-
+    numberOfPlayers = configReader->getNumOfPlayers();
+    playerCash = configReader->getPlayerCash();
+    DiceMaxNumber = configReader->getDiceMaxNumber();
     for (int i = 0; i < numberOfPlayers; ++i)
     {
         Player* player = new Player();
@@ -29,6 +27,11 @@ Game::Game(int _numberOfPlayers)
 
     currentPlayer = playerPointers.first();
 }
+
+
+
+
+
 
 void Game::MovePlayer()
 
@@ -64,6 +67,11 @@ void Game::MovePlayer()
         emit statement("Gracz "+ whosTurn() + " otrzymal pieniadze!");
     }
     isPlayerDone();
+}
+
+void Game::setPlayerCash(int playerCash)
+{
+    this->playerCash=playerCash;
 }
 
 void Game::EndPlayerTurn()

@@ -32,7 +32,8 @@ SOURCES += \
     game.cpp \
     board.cpp \
     boardui.cpp \
-    playerui.cpp
+    playerui.cpp \
+    configreader.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     game.h \
     board.h \
     boardui.h \
-    playerui.h
+    playerui.h \
+    configreader.h
 
 FORMS += \
         mainwindow.ui
@@ -52,3 +54,5 @@ DISTFILES += \
 
 RESOURCES += \
     resource.qrc
+
+QT += xml
